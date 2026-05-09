@@ -8,9 +8,6 @@ on:
       plugin:
         description: "Plugin to release (e.g. cs-tutor). Defaults to all changed."
         required: false
-      bump:
-        description: "Override version bump (major | minor | patch). Auto-detected from commits if omitted."
-        required: false
 
 permissions:
   contents: write
@@ -22,14 +19,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Detect changed plugins
+      - name: Detect plugins to release
         id: changes
         env:
           PLUGIN_INPUT: ${{ github.event.inputs.plugin }}
@@ -43,66 +34,13 @@ jobs:
             echo "Detected changed plugins: ${CHANGED}"
           fi
 
-      - name: Release each changed plugin
+      - name: Create releases for changed plugins
         if: steps.changes.outputs.plugins != ''
         env:
-          BUMP_OVERRIDE: ${{ github.event.inputs.bump }}
           PLUGINS: ${{ steps.changes.outputs.plugins }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-
-          bump_semver() {
-            local version="$1" bump="$2"
-            local major minor patch
-            IFS='.' read -r major minor patch <<< "$version"
-            case "$bump" in
-              major) echo "$((major + 1)).0.0" ;;
-              minor) echo "${major}.$((minor + 1)).0" ;;
-              patch) echo "${major}.${minor}.$((patch + 1))" ;;
-            esac
-          }
-
-          detect_bump() {
-            local commits="$1"
-            if echo "$commits" | grep -qE "^(feat|fix|refactor|perf|chore)(\(.+\))?!:|BREAKING CHANGE"; then
-              echo "major"
-            elif echo "$commits" | grep -qE "^feat(\(.+\))?:"; then
-              echo "minor"
-            elif echo "$commits" | grep -qE "^(fix|perf|refactor)(\(.+\))?:"; then
-              echo "patch"
-            else
-              echo "none"
-            fi
-          }
-
-          generate_changelog_section() {
-            local commits="$1" version="$2" date="$3"
-            local breaking="" added="" fixed="" changed="" perf=""
-
-            while IFS= read -r line; do
-              [[ -z "$line" ]] && continue
-              if echo "$line" | grep -qE "BREAKING CHANGE|(\(.+\))?!:"; then
-                breaking+="- ${line}"$'\n'
-              elif echo "$line" | grep -qE "^feat(\(.+\))?:"; then
-                added+="- ${line#feat*: }"$'\n'
-              elif echo "$line" | grep -qE "^fix(\(.+\))?:"; then
-                fixed+="- ${line#fix*: }"$'\n'
-              elif echo "$line" | grep -qE "^(refactor|chore)(\(.+\))?:"; then
-                changed+="- ${line#*: }"$'\n'
-              elif echo "$line" | grep -qE "^perf(\(.+\))?:"; then
-                perf+="- ${line#perf*: }"$'\n'
-              fi
-            done <<< "$commits"
-
-            local section="## [${version}] - ${date}"$'\n'
-            [[ -n "$breaking" ]] && section+=$'\n'"### Breaking Changes"$'\n'"${breaking}"
-            [[ -n "$added"    ]] && section+=$'\n'"### Added"$'\n'"${added}"
-            [[ -n "$fixed"    ]] && section+=$'\n'"### Fixed"$'\n'"${fixed}"
-            [[ -n "$changed"  ]] && section+=$'\n'"### Changed"$'\n'"${changed}"
-            [[ -n "$perf"     ]] && section+=$'\n'"### Performance"$'\n'"${perf}"
-            echo "$section"
-          }
 
           RELEASED_ANYTHING=false
 
@@ -110,89 +48,31 @@ jobs:
             PLUGIN_DIR="plugins/${PLUGIN}"
             PLUGIN_JSON="${PLUGIN_DIR}/.claude-plugin/plugin.json"
             CHANGELOG="${PLUGIN_DIR}/CHANGELOG.md"
-            README="${PLUGIN_DIR}/README.md"
 
             [[ ! -f "$PLUGIN_JSON" ]] && { echo "No plugin.json for ${PLUGIN}, skipping."; continue; }
 
-            CURRENT_VERSION=$(jq -r '.version' "$PLUGIN_JSON")
-            LAST_TAG="${PLUGIN}-v${CURRENT_VERSION}"
+            VERSION=$(jq -r '.version' "$PLUGIN_JSON")
+            TAG="${PLUGIN}-v${VERSION}"
 
-            if git rev-parse --verify "refs/tags/${LAST_TAG}" >/dev/null 2>&1; then
-              COMMITS=$(git log "${LAST_TAG}..HEAD" --format="%s" -- "${PLUGIN_DIR}/" 2>/dev/null || true)
-            else
-              COMMITS=$(git log --format="%s" -- "${PLUGIN_DIR}/" 2>/dev/null || true)
+            if git ls-remote --tags origin "refs/tags/${TAG}" | grep -q "${TAG}"; then
+              echo "${TAG} already released, skipping."
+              continue
             fi
 
-            [[ -z "$COMMITS" ]] && { echo "No commits for ${PLUGIN} since ${LAST_TAG}, skipping."; continue; }
-
-            if [[ -n "$BUMP_OVERRIDE" ]]; then
-              BUMP="$BUMP_OVERRIDE"
-            else
-              BUMP=$(detect_bump "$COMMITS")
-            fi
-
-            [[ "$BUMP" == "none" ]] && { echo "No releasable commits for ${PLUGIN}, skipping."; continue; }
-
-            NEW_VERSION=$(bump_semver "$CURRENT_VERSION" "$BUMP")
-            NEW_TAG="${PLUGIN}-v${NEW_VERSION}"
-            RELEASE_DATE=$(date +%Y-%m-%d)
-
-            echo "Releasing ${PLUGIN}: ${CURRENT_VERSION} → ${NEW_VERSION} (${BUMP})"
-
-            # Update plugin.json version
-            jq --arg v "$NEW_VERSION" '.version = $v' "$PLUGIN_JSON" > /tmp/plugin.json.tmp
-            mv /tmp/plugin.json.tmp "$PLUGIN_JSON"
-
-            # Generate changelog section and prepend to CHANGELOG.md
-            SECTION=$(generate_changelog_section "$COMMITS" "$NEW_VERSION" "$RELEASE_DATE")
-
+            # Extract release notes from the matching CHANGELOG section
             if [[ -f "$CHANGELOG" ]]; then
-              awk -v section="$SECTION" '
-                /^# Changelog/ { print; print ""; print section; next }
-                { print }
-              ' "$CHANGELOG" > /tmp/changelog.tmp
-              mv /tmp/changelog.tmp "$CHANGELOG"
-            else
-              {
-                echo "# Changelog"
-                echo ""
-                echo "All notable changes to the \`${PLUGIN}\` plugin."
-                echo ""
-                echo "$SECTION"
-              } > "$CHANGELOG"
+              NOTES=$(awk "/^## \[${VERSION}\]/{found=1; next} found && /^## \[/{exit} found{print}" "$CHANGELOG" | sed '/^[[:space:]]*$/d')
             fi
 
-            # Update version badge in plugin README
-            # Pattern: version-v<semver>-blue (shields.io path segment)
-            if [[ -f "$README" ]]; then
-              sed -i "s|version-v[0-9]*\.[0-9]*\.[0-9]*-blue|version-v${NEW_VERSION}-blue|g" "$README"
-            fi
+            git tag "$TAG"
+            git push origin "$TAG"
 
-            # Update per-plugin version badge in root README
-            # shields.io encodes '-' as '--' in URL path segments, so cs-tutor → cs--tutor
-            PLUGIN_URL=$(echo "$PLUGIN" | sed 's/-/--/g')
-            if [[ -f "README.md" ]]; then
-              sed -i "s|${PLUGIN_URL}-v[0-9]*\.[0-9]*\.[0-9]*-blue|${PLUGIN_URL}-v${NEW_VERSION}-blue|g" "README.md"
-            fi
-
-            # Commit and push tag before creating the GitHub Release
-            # gh release create requires the tag to exist on the remote first
-            git add "$PLUGIN_JSON" "$CHANGELOG"
-            [[ -f "$README" ]] && git add "$README"
-            git add "README.md" 2>/dev/null || true
-
-            git commit -m "chore(${PLUGIN}): release v${NEW_VERSION}"
-            git tag "$NEW_TAG"
-            git push origin main --tags
-
-            gh release create "$NEW_TAG" \
-              --title "${PLUGIN} v${NEW_VERSION}" \
-              --notes "$SECTION"
+            gh release create "$TAG" \
+              --title "${PLUGIN} v${VERSION}" \
+              --notes "${NOTES:-Release ${TAG}}"
 
             RELEASED_ANYTHING=true
-            echo "Released ${NEW_TAG}"
+            echo "Released ${TAG}"
           done
 
-          if [[ "$RELEASED_ANYTHING" != true ]]; then
-            echo "Nothing to release."
-          fi
+          [[ "$RELEASED_ANYTHING" != true ]] && echo "Nothing to release."
