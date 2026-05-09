@@ -1,0 +1,9 @@
+{
+    "name": "Computer Science Tutor",
+    "description": "A plugin that provides a tutor for computer science topics, including programming languages, algorithms, data structures, and more.",
+    "version": "1.0.0",
+    "author": {
+        "name": "Rick Goshen",
+        "email": "rick.goshen@gmail.com"
+    }
+}
