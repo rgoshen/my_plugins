@@ -25,7 +25,7 @@ Rick Goshen's personal Claude Code plugin marketplace.
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
+See [CONTRIBUTING.md](./CONTRIBUTING.md) and the [Architecture docs](https://rgoshen.github.io/my_plugins/architecture).
 
 ## License
 

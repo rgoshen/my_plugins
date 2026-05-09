@@ -27,9 +27,7 @@ my_plugins/
 ├── CLAUDE.md                   # This file
 ├── README.md
 ├── CONTRIBUTING.md
-├── ARCHITECTURE.md
 ├── LICENSE
-├── TODO.md
 └── SUMMARY.md
 ```
 
