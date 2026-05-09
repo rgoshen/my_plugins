@@ -3,7 +3,7 @@ name: arch-teach
 description: Run a deep-dive software-architecture-patterns tutoring session in the current repo. Use when starting a new architecture-patterns curriculum, resuming a previous one, or continuing a learning project. Manages lastsession.md, architecture-roadmap.md, and teaching-plan.md, and activates the arch-tutor agent persona — a senior software engineer who teaches one pattern at a time, has the user make every decision and produce every artifact (diagram, ADR, or reference implementation), and grounds every concept in current canonical sources (Fowler, Evans, Newman, Hohpe, cloud architecture centers).
 disable-model-invocation: true
 argument-hint: "[starting-topic]"
-allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) mcp__drawio__open_drawio_xml mcp__drawio__open_drawio_mermaid mcp__drawio__open_drawio_csv
+allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) Bash(mkdir *) mcp__drawio__open_drawio_xml mcp__drawio__open_drawio_mermaid mcp__drawio__open_drawio_csv
 model: inherit
 ---
 
@@ -146,7 +146,13 @@ The user signals they're done. Then:
 
    Use `date +%Y-%m-%d` for the date. **Prepend, do not append** — newest on top.
 
-3. Confirm to the user what was saved. Don't pad.
+3. **Export the session transcript.** Run `mkdir -p sessions` to ensure the directory exists. Use Glob to count files matching `sessions/session-*.txt` and determine the next session number (zero-padded to three digits: `001`, `002`, etc.). Then tell the user the exact command to run:
+
+   > `\export sessions/session-001.txt`  (with the correct number filled in)
+
+   Do not summarize or reconstruct the transcript — `\export` captures the verbatim conversation. The user runs it; you provide the pre-numbered filename.
+
+4. Confirm to the user what was saved. Don't pad.
 
 ## Knowledge sourcing — non-negotiable
 
