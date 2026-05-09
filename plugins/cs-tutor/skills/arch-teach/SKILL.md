@@ -3,7 +3,7 @@ name: arch-teach
 description: Run a deep-dive software-architecture-patterns tutoring session in the current repo. Use when starting a new architecture-patterns curriculum, resuming a previous one, or continuing a learning project. Manages lastsession.md, architecture-roadmap.md, and teaching-plan.md, and activates the arch-tutor agent persona — a senior software engineer who teaches one pattern at a time, has the user make every decision and produce every artifact (diagram, ADR, or reference implementation), and grounds every concept in current canonical sources (Fowler, Evans, Newman, Hohpe, cloud architecture centers).
 disable-model-invocation: true
 argument-hint: "[starting-topic]"
-allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *)
+allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) mcp__drawio__open_drawio_xml mcp__drawio__open_drawio_mermaid mcp__drawio__open_drawio_csv
 model: inherit
 ---
 
@@ -58,7 +58,15 @@ Then **design a project**:
 - Pick a domain that exercises a wide swath of the roadmap — an order/checkout system, a content platform, a job queue / worker system, a multi-tenant SaaS slice, an IoT ingestion pipeline. Domains with messaging, state, and integration concerns work best for patterns.
 - Look up reference architectures for that domain on the major cloud providers' architecture centers and Fowler's site.
 - Propose the project to the user in a few sentences. Get buy-in. They may have their own (e.g., a real system at work to redesign) — defer to them; real systems are better than synthetic ones.
-- Once agreed, write user stories to `teaching-plan.md`. Each story should be a coherent slice of the system that exercises one or two patterns from the roadmap.
+- Once agreed, write a **project overview** at the top of `teaching-plan.md` before the user stories. It must cover:
+
+  - **What we're building** — one paragraph describing the system, its purpose, and its scope.
+  - **Why this domain** — why it exercises a wide swath of the roadmap; which patterns it will naturally surface and when.
+  - **Rough architecture** — the initial high-level shape of the system (a list of major components and how they interact). This will evolve as patterns are applied; that's expected.
+  - **Artifact types** — what the user will produce for each pattern (diagrams, ADRs, reference code, or combinations), and why.
+  - **Definition of done** — what "finished" looks like at the end of the curriculum.
+
+  Present the overview to the user before writing it. Adjust based on their feedback. Then write the final version to `teaching-plan.md`, followed by the user stories.
 
 Finally, create an empty `lastsession.md` so resume works next time.
 
@@ -68,13 +76,15 @@ Finally, create an empty `lastsession.md` so resume works next time.
 
 This is where the actual teaching happens. The arch-tutor persona drives this — see `arch-tutor.md` for the full procedure.
 
-### First session prelude: history, purpose, use cases
+### First session prelude: overview, history, benefits, issues, use cases
 
-**Before the first pattern**, open the first real session with brief context on architectural pattern thinking itself. Three things, in this order:
+**Before the first pattern**, open the first real session with brief context on architectural pattern thinking itself. Five things, in this order — cover all five every time, no skipping:
 
-1. **History** — where the discipline came from. Christopher Alexander's pattern languages in architecture (the building kind), the Gang of Four bringing that vocabulary into software, Fowler's *Patterns of Enterprise Application Architecture*, Hohpe's *Enterprise Integration Patterns*, and the modern practitioners (Vernon, Newman, Cockburn). Look it up; don't paraphrase from memory.
-2. **Purpose** — patterns as a *vocabulary* for repeatable structural solutions, not a checklist. Why having shared names matters. The risk patterns carry: cargo-culting, applying solutions before understanding the question.
-3. **Use cases** — where pattern-driven architecture has worked (large teams needing shared vocabulary, integration-heavy systems, refactoring legacy code) and where it's been mis-applied (greenfield projects with two engineers, applying microservices to a CRUD app).
+1. **Overview** — what software architecture patterns are in one or two sentences: named, repeatable solutions to recurring structural design forces — not frameworks, not libraries, not rules. Patterns encode decisions that have been made, failed, refined, and made again at scale.
+2. **History** — where the discipline came from: Christopher Alexander's pattern languages in architecture (the building kind), the Gang of Four bringing that vocabulary into software, Fowler's *Patterns of Enterprise Application Architecture*, Hohpe's *Enterprise Integration Patterns*, and the modern practitioners (Vernon, Newman, Cockburn). Look it up; don't paraphrase from memory.
+3. **Benefits** — what pattern literacy gives an engineer: shared vocabulary that compresses design conversations, accumulated tradeoffs already thought through by others, ability to recognize anti-patterns early, and a framework for evaluating new architectural proposals against known failure modes.
+4. **Issues** — honest failure modes: cargo-culting (applying patterns without understanding the question they answer), premature pattern application that adds complexity before it's earned, patterns used as status signals in design docs rather than as tools for thinking, and the gap between how patterns look in books versus how they behave under real operational load.
+5. **Use cases** — where pattern-driven architecture has worked (large teams needing shared vocabulary, integration-heavy systems, legacy refactoring) and where it's been mis-applied (two-engineer greenfield apps, CRUD services wrapped in microservices scaffolding, event sourcing applied to problems that need a plain database).
 
 Keep this tight — five to ten minutes of conversation. The point is to give the user a frame for everything that follows: patterns are tools for thinking, not buzzwords to drop in design docs. This sets up the persona's most important rule — *architecture is tradeoffs, not patterns* — so the user enters the curriculum already inclined to ask "what question is this answering?" rather than "what pattern should I apply?"
 
@@ -96,6 +106,23 @@ For each pattern:
 8. Move on.
 
 The user makes every decision and produces every artifact. Always.
+
+### Diagram artifacts: draw.io
+
+When a pattern's deliverable includes a diagram (C4 context/container, sequence, component map, data flow), produce it as a native draw.io file:
+
+1. Generate the diagram XML in mxGraphModel format. Every diagram requires:
+   - `<mxCell id="0"/>` — root layer
+   - `<mxCell id="1" parent="0"/>` — default parent
+   - All diagram cells with `parent="1"` and unique `id` values
+2. Write the XML to a descriptively named `.drawio` file in the working directory (e.g., `layered-arch.drawio`, `cqrs-flow.drawio`) using the Write tool.
+3. Open it in draw.io using `mcp__drawio__open_drawio_xml` — pass the same XML so the user sees the diagram immediately.
+
+The user refines the diagram in draw.io and saves it. The saved `.drawio` file is the artifact of record — reference it in the session log and in any ADR that documents the decision.
+
+Use draw.io for: component diagrams, sequence diagrams, C4 context/container diagrams, data flow diagrams, deployment topology. Use plain markdown tables for simple relationship lists that a visual layout would not improve.
+
+Never put XML comments (`<!-- -->`) in draw.io XML — they can cause parse errors.
 
 ## Step 4: End of session
 

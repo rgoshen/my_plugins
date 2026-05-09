@@ -51,6 +51,16 @@ Then **design a project**:
 - Propose the project to the user in a few sentences. Get buy-in. They may have their own idea — defer to them.
 - Once agreed, write user stories to `teaching-plan.md`. Each story should be independently shippable and exercise a coherent slice of the roadmap.
 
+Once agreed, write a **project overview** at the top of `teaching-plan.md` before the user stories. It must cover:
+
+- **What we're building** — one paragraph describing the project, its purpose, and its scope.
+- **Why this project** — why it exercises the language well; which language features it will surface and when.
+- **Tech stack** — language version, build tool, package manager, key libraries (with rationale for each).
+- **Project layout** — the idiomatic directory structure for this kind of project in this language.
+- **Definition of done** — what "finished" looks like at the end of the curriculum.
+
+Present the overview to the user before writing it. Adjust based on their feedback. Then write the final version to `teaching-plan.md`, followed by the user stories.
+
 Finally, create an empty `lastsession.md` so resume works next time.
 
 **Then stop.** Kickoff is heavy — three files written, a project agreed to, a roadmap shaped. Ask the user whether to start Story 1 now or wrap and pick up next session. Don't auto-roll into the session loop; the user has just done a lot of decision-making and may want a beat before the actual teaching starts.
@@ -67,13 +77,15 @@ Treat environment setup as **Story 0** in `teaching-plan.md` if it's non-trivial
 
 A reasonable Story 0 acceptance criterion looks like: "the user can run `<lang> --version` and `<build-tool> --version` from a fresh terminal, and understands what each tool does and why it exists."
 
-### First session prelude: history, purpose, use cases
+### First session prelude: overview, history, benefits, issues, use cases
 
-Once the environment is ready, but **before the first concept**, open the first real session with brief context on the language itself. Three things, in this order:
+Once the environment is ready, but **before the first concept**, open the first real session with brief context on the language itself. Five things, in this order — cover all five every time, no skipping:
 
-1. **History** — when it was created, by whom, what it grew out of, what problem it was originally designed to solve. Look this up; don't paraphrase from memory. The language's own history page or Wikipedia entry is usually canonical enough to start from.
-2. **Purpose** — what the language is optimized for, what mental model it asks of you, where its design philosophy comes from.
-3. **Use cases** — what it's actually used for in production, by whom, and why. Real companies, real systems.
+1. **Overview** — what kind of language this is in one or two sentences: compiled or interpreted, statically or dynamically typed, primary paradigm (systems, functional, OO, scripting, etc.), and the one idea that makes it distinct from its nearest neighbours.
+2. **History** — when it was created, by whom, what it grew out of, and what problem it was originally designed to solve. Look this up; don't paraphrase from memory. The language's own history page or Wikipedia entry is usually canonical enough to start from.
+3. **Benefits** — what the language does especially well, and why those strengths exist (tie back to design intent). Be specific: not "it's fast" but "zero-cost abstractions mean you pay nothing at runtime for using iterators."
+4. **Issues** — honest weaknesses: ecosystem gaps, footguns, performance ceilings, learning-curve roughness, deployment constraints, things the language community is still actively working through. Real engineers hit these; don't gloss them.
+5. **Use cases** — what it's actually used for in production, by whom, and why. Real companies, real systems.
 
 Keep this tight — five to ten minutes of conversation, not a lecture. The point is to give the user a frame for everything that follows. Without it, syntax feels arbitrary; with it, design choices start to make sense. Knowing OCaml descends from ML and theorem proving makes the type system click. Knowing Go was designed for Google-scale concurrency makes goroutines feel inevitable. Knowing Rust replaced C++ at Mozilla makes ownership feel like a feature, not a chore.
 
