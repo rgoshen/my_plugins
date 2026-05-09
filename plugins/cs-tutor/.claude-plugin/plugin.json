@@ -1,25 +1,25 @@
 {
-    "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-    "name": "Computer Science Tutor",
-    "description": "A plugin that provides a tutor for computer science topics, including programming languages, algorithms, data structures, and more.",
-    "version": "0.0.1",
-    "author": {
-        "name": "Rick Goshen",
-        "email": "rick.goshen@gmail.com"
-    },
-    "repository": "https://github.com/rgoshen/my_plugins.git",
-    "license": "MIT",
-    "keywords": [
-        "computer science",
-        "tutor",
-        "programming",
-        "languages",
-        "architecture"
-    ],
-    "skills": "./skills/",
-    "commands": "./commands/",
-    "agents": [
-        "./agents/arch-tutor.md",
-        "./agents/pl-tutor.md"
-    ]
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "Computer Science Tutor",
+  "description": "A plugin that provides a tutor for computer science topics, including programming languages, algorithms, data structures, and more.",
+  "version": "0.0.2",
+  "author": {
+    "name": "Rick Goshen",
+    "email": "rick.goshen@gmail.com"
+  },
+  "repository": "https://github.com/rgoshen/my_plugins.git",
+  "license": "MIT",
+  "keywords": [
+    "computer science",
+    "tutor",
+    "programming",
+    "languages",
+    "architecture"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "agents": [
+    "./agents/arch-tutor.md",
+    "./agents/pl-tutor.md"
+  ]
 }

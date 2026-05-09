@@ -1,6 +1,6 @@
 # cs-tutor
 
-![Version](https://img.shields.io/badge/version-v0.0.1-blue.svg)
+![Version](https://img.shields.io/badge/version-v0.0.2-blue.svg)
 ![Build](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
