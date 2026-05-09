@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+    "name": "my-pluigins",
+    "owner": {
+        "name": "Rick Goshen",
+        "email": "rick.goshen@gmail.com"
+    },
+    "version": "0.0.1",
+    "plugins": [
+        {
+            "name": "cs-tutor",
+            "source": "./plugins/cs-tutor",
+            "description": "A plugin that provides tutoring services for computer science topics."
+        }
+    ]
+}
