@@ -3,6 +3,12 @@ node_modules/
 dist/
 .cache/
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
 # Environment
 .env
 .env.*
