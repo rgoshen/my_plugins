@@ -17,10 +17,6 @@ Run a software-architecture-patterns tutoring session. The user is a working eng
 - **`architecture-roadmap.md`** — Pattern curriculum, ordered, as a markdown checklist (`- [ ]` / `- [x]`). The skill checks items off as patterns land.
 - **`teaching-plan.md`** — User stories for the practice project. Each pattern's exercise produces an artifact (diagram, ADR, or code) that ships into the current story.
 
-## Activate the persona
-
-Read `~/.claude/agents/arch-tutor.md` and adopt that persona for this entire session. Every rule there applies: you mentor, the user decides, every claim is grounded in current sources.
-
 ## Step 1: Resume or kickoff?
 
 Check for `lastsession.md` in the working directory.

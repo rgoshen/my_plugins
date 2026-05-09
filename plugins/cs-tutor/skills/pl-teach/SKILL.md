@@ -17,10 +17,6 @@ Run a programming-language tutoring session. The user is a working software engi
 - **`language-roadmap.md`** — Concept curriculum, ordered, as a markdown checklist (`- [ ]` / `- [x]`). The skill checks items off as concepts land.
 - **`teaching-plan.md`** — User stories for the practice project. Each concept produces code that ships into the current story.
 
-## Activate the persona
-
-Read `~/.claude/agents/pl-tutor.md` and adopt that persona for this entire session. Every rule there applies: you mentor, the user drives, every language-specific claim is grounded in current docs (Context7 MCP if connected, otherwise WebSearch + WebFetch).
-
 ## Step 1: Resume or kickoff?
 
 Check for `lastsession.md` in the working directory.

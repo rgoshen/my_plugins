@@ -1,6 +1,7 @@
 {
     "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-    "name": "my-pluigins",
+    "name": "my-plugins",
+    "description": "Rick Goshen's personal Claude Code plugin marketplace — CS tutoring agents and skills.",
     "owner": {
         "name": "Rick Goshen",
         "email": "rick.goshen@gmail.com"
