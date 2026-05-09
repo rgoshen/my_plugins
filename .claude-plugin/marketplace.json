@@ -11,7 +11,10 @@
         {
             "name": "cs-tutor",
             "source": "./plugins/cs-tutor",
-            "description": "A plugin that provides tutoring services for computer science topics."
+            "description": "A plugin that provides tutoring services for computer science topics.",
+            "category": "education",
+            "tags": ["education", "tutoring", "computer-science", "architecture", "programming-languages", "learning", "mentoring"],
+            "homepage": "https://rgoshen.github.io/my_plugins/plugins/cs-tutor"
         }
     ]
 }

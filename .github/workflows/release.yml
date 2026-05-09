@@ -175,13 +175,15 @@ jobs:
               sed -i "s|${PLUGIN_URL}-v[0-9]*\.[0-9]*\.[0-9]*-blue|${PLUGIN_URL}-v${NEW_VERSION}-blue|g" "README.md"
             fi
 
-            # Commit, tag, release
+            # Commit and push tag before creating the GitHub Release
+            # gh release create requires the tag to exist on the remote first
             git add "$PLUGIN_JSON" "$CHANGELOG"
             [[ -f "$README" ]] && git add "$README"
             git add "README.md" 2>/dev/null || true
 
             git commit -m "chore(${PLUGIN}): release v${NEW_VERSION}"
             git tag "$NEW_TAG"
+            git push origin main --tags
 
             gh release create "$NEW_TAG" \
               --title "${PLUGIN} v${NEW_VERSION}" \
@@ -191,8 +193,6 @@ jobs:
             echo "Released ${NEW_TAG}"
           done
 
-          if [[ "$RELEASED_ANYTHING" == true ]]; then
-            git push origin main --tags
-          else
+          if [[ "$RELEASED_ANYTHING" != true ]]; then
             echo "Nothing to release."
           fi

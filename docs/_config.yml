@@ -1,0 +1,51 @@
+title: my-plugins
+description: Rick Goshen's personal Claude Code plugin marketplace
+baseurl: "/my_plugins"
+url: "https://rgoshen.github.io"
+
+theme: just-the-docs
+
+# Site navigation
+nav_enabled: true
+search_enabled: true
+
+# Footer
+footer_content: "MIT License &copy; 2026 Rick Goshen"
+
+# Color scheme
+color_scheme: dark
+
+# Aux links in header
+aux_links:
+  "GitHub":
+    - "https://github.com/rgoshen/my_plugins"
+
+aux_links_new_tab: true
+
+# Collections for plugins
+collections:
+  plugins:
+    permalink: "/plugins/:name"
+    output: true
+
+# Back to top
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Callouts
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
