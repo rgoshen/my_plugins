@@ -72,7 +72,8 @@ def _extract(jsonl_path: Path) -> list[tuple[str, str]]:
                         order.append(("asst", msg_id))
 
     return [
-        (role, text if role == "human" else "\n\n".join(asst_texts[text]))
+        ("human" if role == "human" else "assistant",
+         text if role == "human" else "\n\n".join(asst_texts[text]))
         for role, text in order
         if role == "human" or asst_texts.get(text)
     ]

@@ -116,7 +116,7 @@ When a pattern's deliverable includes a diagram (C4 context/container, sequence,
    - `<mxCell id="1" parent="0"/>` — default parent
    - All diagram cells with `parent="1"` and unique `id` values
 2. Write the XML to a descriptively named `.drawio` file in the working directory (e.g., `layered-arch.drawio`, `cqrs-flow.drawio`) using the Write tool.
-3. Open it in draw.io using `mcp__drawio__open_drawio_xml` — pass the same XML so the user sees the diagram immediately.
+3. Open it in draw.io using `mcp__drawio__open_drawio_xml` — pass the same XML so the user sees the diagram immediately. If the MCP tool is unavailable (draw.io not installed), skip this step, keep the `.drawio` file, and tell the user to open it manually or install draw.io from [drawio.com](https://www.drawio.com/).
 
 The user refines the diagram in draw.io and saves it. The saved `.drawio` file is the artifact of record — reference it in the session log and in any ADR that documents the decision.
 
@@ -146,7 +146,7 @@ The user signals they're done. Then:
 
    Use `date +%Y-%m-%d` for the date. **Prepend, do not append** — newest on top.
 
-3. **Export the session transcript.** Use Glob to find `export-session.py` inside `~/.claude/plugins/cache/cs-tutor*/scripts/`. Run it with `python3 <found-path>`. The script reads the current session JSONL, writes the verbatim transcript to `sessions/session-NNN.txt` (auto-numbered), and prints the output path. Tell the user where it was saved.
+3. **Export the session transcript.** Use Glob to find `export_session.py` inside `~/.claude/plugins/cache/cs-tutor*/scripts/`. Run it with `python3 <found-path>`. The script reads the current session JSONL, writes the verbatim transcript to `sessions/session-NNN.txt` (auto-numbered), and prints the output path. Tell the user where it was saved.
 
 4. Confirm to the user what was saved. Don't pad.
 

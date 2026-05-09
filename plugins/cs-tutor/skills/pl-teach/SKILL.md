@@ -128,7 +128,7 @@ The user signals they're done ("I'm done", "let's wrap up", "save and stop", or 
 
    Use `date +%Y-%m-%d` for the date. **Prepend, do not append** — newest on top.
 
-3. **Export the session transcript.** Use Glob to find `export-session.py` inside `~/.claude/plugins/cache/cs-tutor*/scripts/`. Run it with `python3 <found-path>`. The script reads the current session JSONL, writes the verbatim transcript to `sessions/session-NNN.txt` (auto-numbered), and prints the output path. Tell the user where it was saved.
+3. **Export the session transcript.** Use Glob to find `export_session.py` inside `~/.claude/plugins/cache/cs-tutor*/scripts/`. Run it with `python3 <found-path>`. The script reads the current session JSONL, writes the verbatim transcript to `sessions/session-NNN.txt` (auto-numbered), and prints the output path. Tell the user where it was saved.
 
 4. Confirm to the user what was saved. Don't pad.
 
