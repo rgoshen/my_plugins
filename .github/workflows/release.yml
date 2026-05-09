@@ -60,6 +60,7 @@ jobs:
             fi
 
             # Extract release notes from the matching CHANGELOG section
+            NOTES=""
             if [[ -f "$CHANGELOG" ]]; then
               NOTES=$(awk "/^## \[${VERSION}\]/{found=1; next} found && /^## \[/{exit} found{print}" "$CHANGELOG" | sed '/^[[:space:]]*$/d')
             fi
@@ -75,4 +76,6 @@ jobs:
             echo "Released ${TAG}"
           done
 
-          [[ "$RELEASED_ANYTHING" != true ]] && echo "Nothing to release."
+          if [[ "$RELEASED_ANYTHING" != true ]]; then
+            echo "Nothing to release."
+          fi

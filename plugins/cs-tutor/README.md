@@ -1,7 +1,7 @@
 # cs-tutor
 
 ![Version](https://img.shields.io/badge/version-v0.1.0-blue.svg)
-![Build](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
+![CI](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 A Claude Code plugin that provides senior-engineer mentors for learning computer science topics. Currently covers software architecture patterns and programming languages.
