@@ -4,6 +4,7 @@ description: Run a deep-dive programming language tutoring session in the curren
 disable-model-invocation: true
 argument-hint: "[language]"
 allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *)
+model: inherit
 ---
 
 # pl-teach

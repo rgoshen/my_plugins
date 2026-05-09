@@ -4,6 +4,7 @@ description: Run a deep-dive software-architecture-patterns tutoring session in 
 disable-model-invocation: true
 argument-hint: "[starting-topic]"
 allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *)
+model: inherit
 ---
 
 # arch-teach
