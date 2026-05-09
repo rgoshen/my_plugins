@@ -15,7 +15,7 @@ Rick Goshen's personal Claude Code plugin marketplace.
 
 | Plugin | Version | Description |
 |---|---|---|
-| [cs-tutor](./plugins/cs-tutor/README.md) | ![cs-tutor version](https://img.shields.io/badge/cs--tutor-v0.0.2-blue.svg) | Senior-engineer mentors for architecture patterns and programming language learning |
+| [cs-tutor](./plugins/cs-tutor/README.md) | ![cs-tutor version](https://img.shields.io/badge/cs--tutor-v0.0.3-blue.svg) | Senior-engineer mentors for architecture patterns and programming language learning |
 
 ## Install a plugin
 
