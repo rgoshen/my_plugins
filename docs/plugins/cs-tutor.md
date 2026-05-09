@@ -8,7 +8,7 @@ nav_order: 1
 # cs-tutor
 
 ![Version](https://img.shields.io/badge/version-v0.1.0-blue.svg)
-![Build](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
+![CI](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 Senior-engineer mentors for computer science learning — architecture patterns and programming languages. Follows a strict mentor-not-driver model: you make every decision, you write every line of code.

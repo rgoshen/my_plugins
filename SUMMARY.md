@@ -1,5 +1,21 @@
 # Summary
 
+## [2026-05-09 23:55] Commit Summary
+
+**Change Type:** Fix  
+**Scope:** CI — release workflow, badges
+
+**Summary:**
+Fixed `set -e` trap in release workflow: `[[ condition ]] && echo` pattern exits with code 1 when the condition is false, killing the job even after work completed successfully. Replaced with `if/fi`. Also initialized `NOTES=""` before the conditional block to prevent `set -u` from tripping on an unset variable. Renamed "Build" badge to "CI" in plugin README and docs to accurately reflect that the workflow covers both plugin validation and pytest tests.
+
+**Rationale:**
+The v0.1.0 release succeeded (tag pushed, GitHub Release created) but CI reported failure due to the `&&` exit-code leak under `set -e`. Badge rename is cosmetic but accurate — the validate.yml workflow covers both jobs.
+
+**References:**
+- PR: #3 (feature/fix-release-set-e-trap)
+
+---
+
 ## [2026-05-09 23:30] Commit Summary
 
 **Change Type:** Feature + Fix  
