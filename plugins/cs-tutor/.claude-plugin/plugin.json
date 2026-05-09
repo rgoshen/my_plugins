@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "Computer Science Tutor",
+  "name": "cs-tutor",
   "description": "A plugin that provides a tutor for computer science topics, including programming languages, algorithms, data structures, and more.",
   "version": "0.0.2",
   "author": {
