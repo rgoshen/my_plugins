@@ -7,7 +7,7 @@ nav_order: 1
 
 # cs-tutor
 
-![Version](https://img.shields.io/badge/version-v0.0.1-blue.svg)
+![Version](https://img.shields.io/badge/version-v0.0.2-blue.svg)
 ![Build](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -16,9 +16,22 @@ Senior-engineer mentors for computer science learning — architecture patterns 
 
 ---
 
+## Prerequisites
+
+### draw.io *(arch-teach only)*
+
+The `arch-teach` skill produces native `.drawio` architectural diagrams and opens them automatically via the bundled `@drawio/mcp` server. This requires the **draw.io desktop app**.
+
+[Download draw.io](https://www.drawio.com/){: .btn .btn-outline }
+
+The MCP server is bundled with this plugin and configured automatically on install. If draw.io is not installed, `.drawio` files are still written to disk and can be opened manually or at [app.diagrams.net](https://app.diagrams.net).
+
+---
+
 ## Install
 
 ```
+/plugin marketplace add rgoshen/my_plugins
 /plugin install cs-tutor@my-plugins
 ```
 
@@ -44,8 +57,14 @@ Senior-engineer mentors for computer science learning — architecture patterns 
 
 | Skill | Description |
 |---|---|
-| `arch-teach` | Session workflow for architecture tutoring — roadmap, ADRs, design reviews, session logs |
-| `pl-teach` | Session workflow for language tutoring — roadmap, code review, practice project, session logs |
+| `arch-teach` | Session workflow for architecture tutoring — roadmap, draw.io diagrams, ADRs, session export |
+| `pl-teach` | Session workflow for language tutoring — roadmap, code review, practice project, session export |
+
+### Scripts
+
+| Script | Description |
+|---|---|
+| `scripts/export_session.py` | Reads the session JSONL and writes a verbatim numbered transcript to `sessions/session-NNN.txt` at end of session |
 
 ---
 
@@ -55,11 +74,6 @@ Senior-engineer mentors for computer science learning — architecture patterns 
 
 ```
 /cs-tutor:arch-teach
-```
-
-Or with a starting focus:
-
-```
 /cs-tutor:arch-teach hexagonal
 /cs-tutor:arch-teach event-driven
 /cs-tutor:arch-teach microservices boundaries
@@ -69,11 +83,6 @@ Or with a starting focus:
 
 ```
 /cs-tutor:pl-teach
-```
-
-Or skip the "what language?" question:
-
-```
 /cs-tutor:pl-teach Rust
 /cs-tutor:pl-teach Go
 /cs-tutor:pl-teach OCaml
@@ -83,13 +92,33 @@ Or skip the "what language?" question:
 
 ## How sessions work
 
-Both tutors are stateful. Run the command from the repo where you want session files to live. The skill manages three files automatically:
+Both tutors are stateful. Run the command from the repo where you want session files to live.
 
 | File | Purpose |
 |---|---|
 | `lastsession.md` | Rolling session log, newest entry on top. The tutor resumes from here. |
 | `architecture-roadmap.md` / `language-roadmap.md` | Curriculum checklist, checked off as concepts land. |
-| `teaching-plan.md` | Practice project user stories. Every concept produces a deliverable that ships into the current story. |
+| `teaching-plan.md` | Project overview + user stories. Every concept produces a deliverable that ships into the current story. |
+| `sessions/session-NNN.txt` | Verbatim transcript of each completed session, auto-exported. |
+
+### Kickoff sequence (first session only)
+
+1. Confirm language or architecture focus
+2. Build or import a curriculum roadmap
+3. Design a practice project — the tutor presents a full **project overview** (what we're building, why, tech stack, project layout, definition of done) and gets your approval before writing it
+4. Break the project into user stories
+
+### First session prelude
+
+Before the first concept the tutor covers five things — **overview, history, benefits, issues, and use cases** — to frame everything that follows. This happens once and is not repeated on resume.
+
+### Architectural diagrams *(arch-teach)*
+
+For each pattern the tutor produces a native `.drawio` diagram (C4 context/container, component map, sequence, data flow). Diagrams open automatically in draw.io desktop via the bundled MCP server. The saved `.drawio` file is the artifact of record, referenced in session logs and ADRs.
+
+### Session export
+
+At the end of every session the tutor runs `scripts/export_session.py` automatically. The script reads the raw session JSONL from `~/.claude/projects/`, extracts human/assistant turns, and writes `sessions/session-NNN.txt` — a verbatim, zero-editing transcript numbered sequentially.
 
 ---
 
