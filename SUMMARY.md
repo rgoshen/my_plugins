@@ -2,6 +2,22 @@
 
 ## [2026-05-11] Commit Summary
 
+**Change Type:** Docs
+**Scope:** TODO.md — planned refactor annotation
+
+**Summary:**
+Added a detailed execution plan to TODO.md for the next refactor: extracting `tutor-persona` and `session-prelude` shared skills from the cs-tutor plugin. Includes exact files to create/edit, content to move, validation steps, and version bump target (v0.3.0). Also saved a project memory entry so the next session auto-surfaces this work.
+
+**Rationale:**
+Four duplication patterns were identified across arch-tutor/pl-tutor and arch-teach/pl-teach. Annotating the plan now (before closing this PR) ensures the next agent session has full context to execute without reconstruction.
+
+**References:**
+- TODO.md: [2026-05-11] Refactor: extract tutor-persona and session-prelude shared skills
+
+---
+
+## [2026-05-11] Commit Summary
+
 **Change Type:** Fix
 **Scope:** cs-tutor — arch-teach, pl-teach, README (clarify skill-context language)
 
