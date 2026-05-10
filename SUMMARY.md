@@ -3,6 +3,22 @@
 ## [2026-05-11] Commit Summary
 
 **Change Type:** Docs
+**Scope:** cs-tutor CHANGELOG — v0.2.0 release notes
+
+**Summary:**
+Added `## [0.2.0]` section to CHANGELOG.md with release notes covering the session-state-manager skill, README authoring guide, skill language fix, and agent updates.
+
+**Rationale:**
+Release workflow reads CHANGELOG.md to populate the GitHub Release notes on merge to main.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
+**Change Type:** Docs
 **Scope:** TODO.md — planned refactor annotation
 
 **Summary:**
