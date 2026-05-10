@@ -25,6 +25,14 @@
 - **Commands** are thin `.md` files in `commands/` that invoke an agent; they are the user-facing slash commands
 - **`version` in one place only** — set it in `plugin.json`, not in the `marketplace.json` entry, to avoid silent conflicts
 
+## Plugin-specific authoring guides
+
+Some plugins define conventions that all contributors to that plugin must follow. Check the plugin's own README before adding components to an existing plugin.
+
+| Plugin | Convention doc |
+|--------|---------------|
+| `cs-tutor` | See [plugins/cs-tutor/README.md — Adding a new tutor](plugins/cs-tutor/README.md#adding-a-new-tutor) for the session-state-manager parameter contract required by every teach skill |
+
 ## Validation
 
 ```bash

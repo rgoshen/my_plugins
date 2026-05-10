@@ -2,6 +2,22 @@
 
 ## [2026-05-11] Commit Summary
 
+**Change Type:** Docs
+**Scope:** cs-tutor README + root CONTRIBUTING.md — tutor authoring convention
+
+**Summary:**
+Added "Adding a new tutor" section to `plugins/cs-tutor/README.md` documenting the session-state-manager parameter contract, new tutor checklist, and parameter reference table. Updated CONTRIBUTING.md to point to this guide. Fixed version badge in README from v0.1.0 to v0.2.0. Added `session-state-manager` to the component table.
+
+**Rationale:**
+The two-parameter convention (`roadmap-file`, `output-label`) was only discoverable by reading the skill source. For a growing curriculum, contributors (human or AI) need the contract documented at the point of authoring. The checklist format mirrors the project CLAUDE.md "Definition of Ready" pattern.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
 **Change Type:** Refactor
 **Scope:** cs-tutor — session-state-manager (generalize for multi-tutor ecosystem)
 
