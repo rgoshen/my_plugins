@@ -1,6 +1,6 @@
 # cs-tutor
 
-![Version](https://img.shields.io/badge/version-v0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-v0.2.0-blue.svg)
 ![CI](https://github.com/rgoshen/my_plugins/actions/workflows/validate.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -30,6 +30,7 @@ The `@drawio/mcp` server is bundled in this plugin and configured automatically 
 | Skill | `pl-teach` | Session workflow for language tutoring — roadmap, code review, project, session export |
 | Command | `/cs-tutor:arch-teach` | Start or resume an architecture tutoring session |
 | Command | `/cs-tutor:pl-teach` | Start or resume a language tutoring session |
+| Skill | `session-state-manager` | Shared LOAD/SAVE handler — used internally by all teach skills; not invoked directly |
 | Script | `scripts/export_session.py` | Auto-export verbatim session transcript to `sessions/session-NNN.txt` |
 
 ---
@@ -92,6 +93,49 @@ For each pattern, the tutor produces a native `.drawio` diagram — component ma
 ### Session export
 
 At the end of every session the tutor automatically runs `scripts/export_session.py`, which reads the session JSONL and writes a verbatim numbered transcript to `sessions/session-NNN.txt`.
+
+---
+
+## Adding a new tutor
+
+cs-tutor is designed to grow into a full CS curriculum. All session state logic lives in the shared `session-state-manager` skill — new tutors plug into it with two parameters and need not duplicate any load/save code.
+
+### Checklist
+
+1. **Agent** — create `agents/<subject>-tutor.md`. Include these in the frontmatter:
+   ```yaml
+   skills:
+     - <subject>-teach
+     - session-state-manager
+   memory: project
+   ```
+
+2. **Teach skill** — create `skills/<subject>-teach/SKILL.md`. In **Step 1**, reference LOAD:
+   ```
+   Follow the LOAD phase defined in the session-state-manager skill
+   (already loaded in your context) with:
+   - roadmap-file: <subject>-roadmap.md
+   ```
+   In **Step 4**, reference SAVE:
+   ```
+   Follow the SAVE phase defined in the session-state-manager skill
+   (already loaded in your context) with:
+   - roadmap-file: <subject>-roadmap.md
+   - output-label: <label>   # e.g. Exercises, Code, Problems, Projects
+   ```
+
+3. **Command** — create `commands/<subject>-teach.md` as a thin entry point that invokes the agent.
+
+4. **Session files** — document in your teach skill's "Working files" section which roadmap file the subject uses (e.g., `data-structures-roadmap.md`).
+
+### session-state-manager parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `roadmap-file` | Yes | Roadmap filename in the working directory |
+| `output-label` | SAVE only | Label for the artifact/work field in the session log |
+
+`session-state-manager` itself never needs to change when a new tutor is added.
 
 ---
 

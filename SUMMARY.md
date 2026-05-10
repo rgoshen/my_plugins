@@ -1,5 +1,101 @@
 # Summary
 
+## [2026-05-11] Commit Summary
+
+**Change Type:** Docs
+**Scope:** cs-tutor CHANGELOG — v0.2.0 release notes
+
+**Summary:**
+Added `## [0.2.0]` section to CHANGELOG.md with release notes covering the session-state-manager skill, README authoring guide, skill language fix, and agent updates.
+
+**Rationale:**
+Release workflow reads CHANGELOG.md to populate the GitHub Release notes on merge to main.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
+**Change Type:** Docs
+**Scope:** TODO.md — planned refactor annotation
+
+**Summary:**
+Added a detailed execution plan to TODO.md for the next refactor: extracting `tutor-persona` and `session-prelude` shared skills from the cs-tutor plugin. Includes exact files to create/edit, content to move, validation steps, and version bump target (v0.3.0). Also saved a project memory entry so the next session auto-surfaces this work.
+
+**Rationale:**
+Four duplication patterns were identified across arch-tutor/pl-tutor and arch-teach/pl-teach. Annotating the plan now (before closing this PR) ensures the next agent session has full context to execute without reconstruction.
+
+**References:**
+- TODO.md: [2026-05-11] Refactor: extract tutor-persona and session-prelude shared skills
+
+---
+
+## [2026-05-11] Commit Summary
+
+**Change Type:** Fix
+**Scope:** cs-tutor — arch-teach, pl-teach, README (clarify skill-context language)
+
+**Summary:**
+Replaced all "delegate to skill" phrasing with "follow the phase defined in skill (already loaded in your context)" across arch-teach Step 1 and 4, pl-teach Step 1 and 4, and the new-tutor checklist in the README. "Delegate" implied a formal call mechanism; the correct model is that all listed skills are loaded into the agent's context simultaneously and the teach skill directs the LLM to follow the relevant section.
+
+**Rationale:**
+Accurate language prevents future authors from expecting a dynamic dispatch mechanism that does not exist. Skills are loaded as context, not called as functions.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
+**Change Type:** Docs
+**Scope:** cs-tutor README + root CONTRIBUTING.md — tutor authoring convention
+
+**Summary:**
+Added "Adding a new tutor" section to `plugins/cs-tutor/README.md` documenting the session-state-manager parameter contract, new tutor checklist, and parameter reference table. Updated CONTRIBUTING.md to point to this guide. Fixed version badge in README from v0.1.0 to v0.2.0. Added `session-state-manager` to the component table.
+
+**Rationale:**
+The two-parameter convention (`roadmap-file`, `output-label`) was only discoverable by reading the skill source. For a growing curriculum, contributors (human or AI) need the contract documented at the point of authoring. The checklist format mirrors the project CLAUDE.md "Definition of Ready" pattern.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
+**Change Type:** Refactor
+**Scope:** cs-tutor — session-state-manager (generalize for multi-tutor ecosystem)
+
+**Summary:**
+Made `session-state-manager` fully generic by removing all hardcoded arch/pl mode handling. The skill now accepts `roadmap-file` and `output-label` parameters from the calling teach skill, and uses a single unified log entry template with a parameterized `Output` field. Both `arch-teach` and `pl-teach` delegation lines updated to pass explicit parameters.
+
+**Rationale:**
+The first implementation hardcoded two modes (arch/pl), meaning every new tutor would require editing the shared skill. With a full CS curriculum planned, the skill must be open for extension without modification: each teach skill passes its own `roadmap-file` and `output-label`, and `session-state-manager` stays generic forever. The unified `{{output-label}}` template keeps the log format consistent across all tutors while preserving per-tutor vocabulary.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
+**Change Type:** Feature
+**Scope:** cs-tutor — session-state-manager skill
+
+**Summary:**
+Added a shared `session-state-manager` skill that centralizes session load/save logic previously duplicated across `arch-teach` and `pl-teach`. Both teaching skills now delegate Step 1 (resume check) and Step 4 (end-of-session save) to this shared skill via a one-line reference. Both tutor agents updated to include the new skill in their `skills:` list. Plugin bumped to v0.2.0.
+
+**Rationale:**
+Session load/save was copy-pasted between the two teach skills with minor variations, creating a maintenance hazard. A single source of truth makes the behavior consistent across relaunches, easier to fix in one place, and extensible if additional tutor modes are added later. Separate log entry templates (arch: `Artifacts` field; pl: `Code` field) kept distinct to preserve per-mode self-documentation.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
 ## [2026-05-09 21:15] Commit Summary
 
 **Change Type:** Fix

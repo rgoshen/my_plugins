@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0] - 2026-05-11
+
+### Added
+- `session-state-manager` shared skill — centralizes session LOAD and SAVE logic (resume check, roadmap update, log entry, transcript export) previously duplicated in `arch-teach` and `pl-teach`
+- New-tutor authoring guide in README: step-by-step checklist and `session-state-manager` parameter contract for adding future tutors
+
+### Changed
+- `arch-teach` and `pl-teach` Steps 1 and 4 now reference `session-state-manager` instead of duplicating load/save logic
+- `session-state-manager` is fully generic — parameterized by `roadmap-file` and `output-label`; no tutor-specific hardcoding
+- Both tutor agents (`arch-tutor`, `pl-tutor`) updated to include `session-state-manager` in their `skills:` list
+- Skill cross-reference language corrected from "delegate to" to "follow the phase defined in (already loaded in your context)"
+- README version badge updated to v0.2.0; `session-state-manager` added to component table
+- CONTRIBUTING.md updated with plugin-specific authoring guide pointer
+
 ## [0.1.0] - 2026-05-09
 
 ### Added
