@@ -19,7 +19,8 @@ Run a software-architecture-patterns tutoring session. The user is a working eng
 
 ## Step 1: Resume or kickoff?
 
-Delegate to the **session-state-manager** skill, **arch mode**, running the **LOAD** phase.
+Delegate to the **session-state-manager** skill, running the **LOAD** phase with:
+- `roadmap-file`: `architecture-roadmap.md`
 
 - If it reports `SESSION_RESUMED = true`, skip to **Session loop**.
 - If it reports `SESSION_RESUMED = false`, run the kickoff sequence below.
@@ -199,7 +200,9 @@ Never put XML comments (`<!-- -->`) in draw.io XML — they can cause parse erro
 
 ## Step 4: End of session
 
-The user signals they're done. Delegate to the **session-state-manager** skill, **arch mode**, running the **SAVE** phase.
+The user signals they're done. Delegate to the **session-state-manager** skill, running the **SAVE** phase with:
+- `roadmap-file`: `architecture-roadmap.md`
+- `output-label`: `Artifacts`
 
 ## Knowledge sourcing — non-negotiable
 

@@ -2,6 +2,22 @@
 
 ## [2026-05-11] Commit Summary
 
+**Change Type:** Refactor
+**Scope:** cs-tutor — session-state-manager (generalize for multi-tutor ecosystem)
+
+**Summary:**
+Made `session-state-manager` fully generic by removing all hardcoded arch/pl mode handling. The skill now accepts `roadmap-file` and `output-label` parameters from the calling teach skill, and uses a single unified log entry template with a parameterized `Output` field. Both `arch-teach` and `pl-teach` delegation lines updated to pass explicit parameters.
+
+**Rationale:**
+The first implementation hardcoded two modes (arch/pl), meaning every new tutor would require editing the shared skill. With a full CS curriculum planned, the skill must be open for extension without modification: each teach skill passes its own `roadmap-file` and `output-label`, and `session-state-manager` stays generic forever. The unified `{{output-label}}` template keeps the log format consistent across all tutors while preserving per-tutor vocabulary.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
 **Change Type:** Feature
 **Scope:** cs-tutor — session-state-manager skill
 

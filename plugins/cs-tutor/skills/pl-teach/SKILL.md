@@ -19,7 +19,8 @@ Run a programming-language tutoring session. The user is a working software engi
 
 ## Step 1: Resume or kickoff?
 
-Delegate to the **session-state-manager** skill, **pl mode**, running the **LOAD** phase.
+Delegate to the **session-state-manager** skill, running the **LOAD** phase with:
+- `roadmap-file`: `language-roadmap.md`
 
 - If it reports `SESSION_RESUMED = true`, skip to **Session loop**.
 - If it reports `SESSION_RESUMED = false`, run the kickoff sequence below.
@@ -100,7 +101,9 @@ The user writes all the code. Always.
 
 ## Step 4: End of session
 
-The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Delegate to the **session-state-manager** skill, **pl mode**, running the **SAVE** phase.
+The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Delegate to the **session-state-manager** skill, running the **SAVE** phase with:
+- `roadmap-file`: `language-roadmap.md`
+- `output-label`: `Code`
 
 ## Knowledge sourcing — non-negotiable
 
