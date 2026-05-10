@@ -110,14 +110,16 @@ cs-tutor is designed to grow into a full CS curriculum. All session state logic 
    memory: project
    ```
 
-2. **Teach skill** — create `skills/<subject>-teach/SKILL.md`. In **Step 1**, delegate LOAD:
+2. **Teach skill** — create `skills/<subject>-teach/SKILL.md`. In **Step 1**, reference LOAD:
    ```
-   Delegate to the session-state-manager skill, running the LOAD phase with:
+   Follow the LOAD phase defined in the session-state-manager skill
+   (already loaded in your context) with:
    - roadmap-file: <subject>-roadmap.md
    ```
-   In **Step 4**, delegate SAVE:
+   In **Step 4**, reference SAVE:
    ```
-   Delegate to the session-state-manager skill, running the SAVE phase with:
+   Follow the SAVE phase defined in the session-state-manager skill
+   (already loaded in your context) with:
    - roadmap-file: <subject>-roadmap.md
    - output-label: <label>   # e.g. Exercises, Code, Problems, Projects
    ```

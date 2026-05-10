@@ -19,11 +19,11 @@ Run a programming-language tutoring session. The user is a working software engi
 
 ## Step 1: Resume or kickoff?
 
-Delegate to the **session-state-manager** skill, running the **LOAD** phase with:
+Follow the **LOAD** phase defined in the **session-state-manager** skill (already loaded in your context) with:
 - `roadmap-file`: `language-roadmap.md`
 
-- If it reports `SESSION_RESUMED = true`, skip to **Session loop**.
-- If it reports `SESSION_RESUMED = false`, run the kickoff sequence below.
+- If it signals `SESSION_RESUMED = true`, skip to **Session loop**.
+- If it signals `SESSION_RESUMED = false`, run the kickoff sequence below.
 
 ## Step 2: Kickoff (only if no `lastsession.md`)
 
@@ -101,7 +101,7 @@ The user writes all the code. Always.
 
 ## Step 4: End of session
 
-The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Delegate to the **session-state-manager** skill, running the **SAVE** phase with:
+The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Follow the **SAVE** phase defined in the **session-state-manager** skill (already loaded in your context) with:
 - `roadmap-file`: `language-roadmap.md`
 - `output-label`: `Code`
 

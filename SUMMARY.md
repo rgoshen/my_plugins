@@ -2,6 +2,22 @@
 
 ## [2026-05-11] Commit Summary
 
+**Change Type:** Fix
+**Scope:** cs-tutor — arch-teach, pl-teach, README (clarify skill-context language)
+
+**Summary:**
+Replaced all "delegate to skill" phrasing with "follow the phase defined in skill (already loaded in your context)" across arch-teach Step 1 and 4, pl-teach Step 1 and 4, and the new-tutor checklist in the README. "Delegate" implied a formal call mechanism; the correct model is that all listed skills are loaded into the agent's context simultaneously and the teach skill directs the LLM to follow the relevant section.
+
+**Rationale:**
+Accurate language prevents future authors from expecting a dynamic dispatch mechanism that does not exist. Skills are loaded as context, not called as functions.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
+## [2026-05-11] Commit Summary
+
 **Change Type:** Docs
 **Scope:** cs-tutor README + root CONTRIBUTING.md — tutor authoring convention
 
