@@ -34,15 +34,77 @@ Check for `lastsession.md` in the working directory.
 
 ## Step 2: Kickoff (only if no `lastsession.md`)
 
-If `$ARGUMENTS` is non-empty, treat it as a starting concept or focus area (e.g., "event-driven", "hexagonal", "microservices boundaries"). Otherwise ask the user directly: *"Are there specific architecture patterns you want to focus on, or should we build a general patterns curriculum?"*
+> **PROHIBITION — READ BEFORE ANYTHING ELSE**
+>
+> Do NOT infer the topic, pattern, or focus area from the working directory name, file names, file contents, Git history, or any other signal in the repo. The directory name is NOT input. Even if the directory is named `layered-architecture` or `microservices-practice`, that means nothing about what the user wants to learn today. **Always ask directly. No exceptions.**
 
-**Do not infer the focus from anything else** — not the working directory name, not file contents, not Git history. The directory is at most a hint to confirm against, never a fact to assume from. Always ask.
+Kickoff has four phases. Each phase ends with an explicit STOP and must not be skipped or merged into the next.
 
-Then ask: *"Do you already have a roadmap, or should we build one together?"*
+---
 
-**If the user has a roadmap:** Ask them to add it to the repo as `architecture-roadmap.md`. Wait for them to confirm. Read it. If it's not in checklist format, rewrite it as a checklist for progress tracking and show the rewrite for approval before saving.
+### Phase 1 — Understand the learner and establish focus
 
-**If the user does not:** Look up current canonical and contemporary sources via Context7 (if connected) or WebSearch + WebFetch. Build a roadmap that walks from foundational pattern thinking to advanced patterns, ordered. A reasonable default progression:
+**If `$ARGUMENTS` is non-empty:** Skip the pattern catalogue. Open with a single message that (a) asks for the user's background (how long writing software, primary domain and stack), (b) proposes `$ARGUMENTS` as the starting focus and asks for confirmation, and (c) asks whether they already have a roadmap or want to build one. Do not assume the argument is correct — confirm it.
+
+**If `$ARGUMENTS` is empty:** The user has given no hint about what they want to learn. Show the full pattern catalogue first — ordered from most foundational to most advanced — so the learner can make an informed choice. A new engineer cannot meaningfully answer "what patterns do you want to focus on?" if they don't know what patterns exist.
+
+Present this list before asking any questions:
+
+```
+Software architecture patterns — foundational to advanced:
+
+Foundational (start here)
+  - Layered Architecture
+  - MVC (Model-View-Controller)
+
+Application architecture
+  - Hexagonal Architecture (Ports & Adapters)
+  - Clean Architecture
+
+Domain-shaped patterns
+  - Anti-corruption Layer
+  - Bounded Contexts
+  - Aggregates (DDD)
+
+System patterns
+  - Monolith
+  - Modular Monolith
+  - Microservices
+
+Distributed patterns
+  - CQRS (Command Query Responsibility Segregation)
+  - Event Sourcing
+  - Saga (orchestration vs choreography)
+
+Integration patterns
+  - Pub/Sub
+  - Request/Reply
+  - Message Broker
+  - Point-to-Point (Hohpe)
+
+Cloud resilience patterns
+  - Circuit Breaker
+  - Bulkhead
+  - Retry
+  - Sidecar
+  - Strangler Fig
+```
+
+Then — in the same message as the list — ask the user three questions:
+
+1. **Background:** How long have you been writing software? What is your primary domain and stack?
+2. **Pattern focus:** Looking at the list above — do you want to go through a general curriculum (all patterns in order from foundational to advanced), or focus on specific areas?
+3. **Existing roadmap:** Do you already have a roadmap in mind, or should we build one together?
+
+**STOP. Wait for the user's answers before proceeding.** Do not begin any lookup or roadmap construction until you have responses to all three.
+
+---
+
+### Phase 2 — Build and confirm the roadmap
+
+**If the user already has a roadmap:** Ask them to describe it or add it to the repo as `architecture-roadmap.md`. Wait for them to confirm. Read it. If it is not in checklist format, rewrite it as a checklist for progress tracking, show the rewrite to the user, and wait for their approval before saving.
+
+**If the user does not have a roadmap:** Look up current canonical and contemporary sources via Context7 (if connected) or WebSearch + WebFetch. Build a roadmap ordered from foundational pattern thinking to advanced patterns. A reasonable default progression:
 
 - Application architecture: layered, MVC, hexagonal / ports & adapters, Clean Architecture
 - Domain-shaped patterns: anti-corruption layer, bounded contexts, aggregates (light DDD touch where relevant to patterns)
@@ -51,26 +113,45 @@ Then ask: *"Do you already have a roadmap, or should we build one together?"*
 - Integration patterns: pub/sub, request/reply, message broker, point-to-point (Hohpe)
 - Cloud resilience patterns: circuit breaker, bulkhead, retry, sidecar, strangler fig
 
-Save it to `architecture-roadmap.md` as a checklist. Show it to the user and offer to adjust before continuing.
+Show the draft roadmap to the user before writing anything. Offer to adjust order, add patterns, or cut scope.
 
-Then **design a project**:
+**STOP. Wait for the user's explicit approval ("looks good", "adjust X", etc.) before writing `architecture-roadmap.md`.** Once approved, save it as a checklist. Do not proceed to Phase 3 until the file is written and the user has confirmed it.
 
-- Pick a domain that exercises a wide swath of the roadmap — an order/checkout system, a content platform, a job queue / worker system, a multi-tenant SaaS slice, an IoT ingestion pipeline. Domains with messaging, state, and integration concerns work best for patterns.
-- Look up reference architectures for that domain on the major cloud providers' architecture centers and Fowler's site.
-- Propose the project to the user in a few sentences. Get buy-in. They may have their own (e.g., a real system at work to redesign) — defer to them; real systems are better than synthetic ones.
-- Once agreed, write a **project overview** at the top of `teaching-plan.md` before the user stories. It must cover:
+---
 
-  - **What we're building** — one paragraph describing the system, its purpose, and its scope.
-  - **Why this domain** — why it exercises a wide swath of the roadmap; which patterns it will naturally surface and when.
-  - **Rough architecture** — the initial high-level shape of the system (a list of major components and how they interact). This will evolve as patterns are applied; that's expected.
-  - **Artifact types** — what the user will produce for each pattern (diagrams, ADRs, reference code, or combinations), and why.
-  - **Definition of done** — what "finished" looks like at the end of the curriculum.
+### Phase 3 — Design and confirm the project
 
-  Present the overview to the user before writing it. Adjust based on their feedback. Then write the final version to `teaching-plan.md`, followed by the user stories.
+Pick a domain that exercises a wide swath of the roadmap — an order/checkout system, a content platform, a job queue/worker system, a multi-tenant SaaS slice, an IoT ingestion pipeline. Domains with messaging, state, and integration concerns work best for patterns.
 
-Finally, create an empty `lastsession.md` so resume works next time.
+Look up reference architectures for that domain on the major cloud providers' architecture centers and Fowler's site.
 
-**Then stop.** Kickoff is heavy — three files written, a project agreed to, a roadmap shaped. Ask the user whether to start Story 1 now or wrap and pick up next session. Don't auto-roll into the session loop; the user has just done a lot of decision-making and may want a beat before the actual teaching starts.
+Propose the project to the user in a few sentences. The user may have their own real system to redesign — defer to them; real systems are better than synthetic ones.
+
+**STOP. Wait for the user's buy-in on the project before writing anything.** Do not write to `teaching-plan.md` until the project is agreed upon.
+
+Once agreed, draft a **project overview** and show it to the user before writing. The overview must cover:
+
+- **What we're building** — one paragraph describing the system, its purpose, and its scope.
+- **Why this domain** — why it exercises a wide swath of the roadmap; which patterns it will naturally surface and when.
+- **Rough architecture** — the initial high-level shape of the system (major components and how they interact). This will evolve as patterns are applied; that is expected.
+- **Artifact types** — what the user will produce for each pattern (diagrams, ADRs, reference code, or combinations), and why.
+- **Definition of done** — what "finished" looks like at the end of the curriculum.
+
+**STOP. Wait for the user's approval on the overview before writing `teaching-plan.md`.** Once approved, write the final version followed by the user stories.
+
+---
+
+### Phase 4 — Wrap kickoff; do not begin teaching
+
+Create an empty `lastsession.md` so resume works next time.
+
+**HARD STOP. Kickoff is complete. Do NOT roll into the session loop or begin any lesson.** The user has just made a sequence of decisions — pattern focus, roadmap shape, project choice, project overview. Ask explicitly:
+
+> "Roadmap and project are set. Do you want to start Story 1 now, or wrap here and pick it up next session?"
+
+Wait for their answer. If they say start now, proceed to Step 3. If they say wrap, end the session. Under no circumstances begin teaching without this confirmation.
+
+> **Note on which pattern to teach:** The roadmap is the curriculum. When teaching begins, start with the first unchecked item in `architecture-roadmap.md`. Do NOT present the roadmap as a pick-list and ask the user to choose where to start. The order has already been decided during Phase 2. The only time a user can jump ahead is if they explicitly say so — and even then, confirm it's intentional before skipping.
 
 ## Step 3: Session loop
 

@@ -1,5 +1,35 @@
 # Summary
 
+## [2026-05-09 21:15] Commit Summary
+
+**Change Type:** Fix
+**Scope:** cs-tutor — arch-teach skill Phase 1
+
+**Summary:**
+Made the pattern catalogue conditional on `$ARGUMENTS` being empty. When no argument is passed and there is no `lastsession.md`, the tutor now shows the full pattern list ordered from foundational to advanced before asking any questions. When `$ARGUMENTS` is non-empty, the catalogue is skipped and the tutor proposes the argument as the starting focus for confirmation.
+
+**Rationale:**
+A learner who hasn't specified a focus area cannot meaningfully answer "what patterns do you want to study?" without first knowing what patterns exist. The foundational-first ordering (Layered → MVC → Hexagonal → Clean → ...) also serves as a natural default curriculum suggestion.
+
+---
+
+## [2026-05-09 21:00] Commit Summary
+
+**Change Type:** Fix
+**Scope:** cs-tutor — arch-teach skill kickoff sequence
+
+**Summary:**
+Rewrote Step 2 (Kickoff) of the arch-teach skill to fix two bugs observed in session transcripts: (1) the agent inferred the topic/pattern from the working directory name instead of asking the user directly; (2) the agent rolled into lesson content immediately after the user chose a pattern without first writing the required files or issuing the mandatory stop.
+
+**Rationale:**
+The original Step 2 contained the correct rules, but as prose paragraphs they were easy for the model to skip. The fix restructures Step 2 into four named phases (Phase 1–4), each ending with an explicit **STOP** directive and a condition that must be satisfied before the next phase begins. The no-assumption prohibition is now a blockquote at the top of the step, with a concrete example (directory named `layered-architecture`), making it impossible to miss. The final kickoff gate is now labeled **HARD STOP** and includes the exact question the model must ask before proceeding to the session loop.
+
+**Bug Fix Context:**
+Root cause: LLMs treat soft prose directives ("Then stop") as advisory when surrounded by flowing instructions. Hard-labeled gates with explicit wait conditions and named phases enforce the sequence structurally.
+
+**References:**
+- Session transcript: 2026-05-09-194852-command-messagecs-tutorarch-teach...
+
 ## [2026-05-09 23:55] Commit Summary
 
 **Change Type:** Fix  
