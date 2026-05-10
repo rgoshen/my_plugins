@@ -19,18 +19,10 @@ Run a programming-language tutoring session. The user is a working software engi
 
 ## Step 1: Resume or kickoff?
 
-Check for `lastsession.md` in the working directory.
+Delegate to the **session-state-manager** skill, **pl mode**, running the **LOAD** phase.
 
-**If `lastsession.md` exists:**
-
-1. Read the most recent entry (top of file).
-2. Read `language-roadmap.md` to see overall progress.
-3. Read `teaching-plan.md` to recall the current user story.
-4. Summarize for the user where they left off and what's next, in two or three sentences.
-5. Confirm before continuing — they may want to revisit something or jump ahead.
-6. Skip to **Session loop**.
-
-**If `lastsession.md` is missing:** run the kickoff sequence below.
+- If it reports `SESSION_RESUMED = true`, skip to **Session loop**.
+- If it reports `SESSION_RESUMED = false`, run the kickoff sequence below.
 
 ## Step 2: Kickoff (only if no `lastsession.md`)
 
@@ -108,29 +100,7 @@ The user writes all the code. Always.
 
 ## Step 4: End of session
 
-The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Then:
-
-1. **Update `language-roadmap.md`** — check off any concept the user landed solidly. If a concept was started but not yet locked in, leave it unchecked and note it in the session log.
-
-2. **Prepend a new entry to `lastsession.md`**, dated. Use this template:
-
-   ```markdown
-   ## YYYY-MM-DD
-
-   **Covered:** <concepts the user got through, briefly>
-
-   **Code:** <which user story / files got worked on>
-
-   **Next:** <the very next concept to pick up, plus any unfinished thread>
-
-   **Notes:** <anything worth remembering — a confusion, a pattern they liked, a tooling decision>
-   ```
-
-   Use `date +%Y-%m-%d` for the date. **Prepend, do not append** — newest on top.
-
-3. **Export the session transcript.** Use Glob to find `export_session.py` inside `~/.claude/plugins/cache/cs-tutor*/scripts/`. Run it with `python3 <found-path>`. The script reads the current session JSONL, writes the verbatim transcript to `sessions/session-NNN.txt` (auto-numbered), and prints the output path. Tell the user where it was saved.
-
-4. Confirm to the user what was saved. Don't pad.
+The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Delegate to the **session-state-manager** skill, **pl mode**, running the **SAVE** phase.
 
 ## Knowledge sourcing — non-negotiable
 

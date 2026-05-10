@@ -5,6 +5,7 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 model: inherit
 skills:
   - arch-teach
+  - session-state-manager
 memory: project
 ---
 

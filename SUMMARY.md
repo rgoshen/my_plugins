@@ -1,5 +1,21 @@
 # Summary
 
+## [2026-05-11] Commit Summary
+
+**Change Type:** Feature
+**Scope:** cs-tutor — session-state-manager skill
+
+**Summary:**
+Added a shared `session-state-manager` skill that centralizes session load/save logic previously duplicated across `arch-teach` and `pl-teach`. Both teaching skills now delegate Step 1 (resume check) and Step 4 (end-of-session save) to this shared skill via a one-line reference. Both tutor agents updated to include the new skill in their `skills:` list. Plugin bumped to v0.2.0.
+
+**Rationale:**
+Session load/save was copy-pasted between the two teach skills with minor variations, creating a maintenance hazard. A single source of truth makes the behavior consistent across relaunches, easier to fix in one place, and extensible if additional tutor modes are added later. Separate log entry templates (arch: `Artifacts` field; pl: `Code` field) kept distinct to preserve per-mode self-documentation.
+
+**References:**
+- TODO.md: [2026-05-11] Feature: session-state-manager shared skill
+
+---
+
 ## [2026-05-09 21:15] Commit Summary
 
 **Change Type:** Fix
