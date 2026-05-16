@@ -1,5 +1,16 @@
 # Summary
 
+## [2026-05-16 04:30] Commit Summary
+
+**Change Type:** Fix
+**Scope:** repo / gitignore
+
+**Summary:**
+Removed erroneously committed planning spec (`docs/superpowers/specs/2026-05-15-cs-tutor-curriculum-github-project-design.md`) and added `docs/superpowers/` to `.gitignore`. Planning artifacts belong in local working notes, not the repo.
+
+**Rationale:**
+Spec was a planning document whose content is already captured in the GitHub Project board and issues. No plugin or docs site functionality depended on it.
+
 ## [2026-05-16 04:10] Commit Summary
 
 **Change Type:** Refactor
