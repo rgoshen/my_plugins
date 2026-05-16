@@ -1,5 +1,19 @@
 # Summary
 
+## [2026-05-15 17:19] Commit Summary
+
+**Change Type:** Fix
+**Scope:** cs-tutor plugin — drawio integration
+
+**Summary:**
+Removed `mcpServers.drawio` from `plugin.json` and replaced the direct `mcp__drawio__*` tool calls in `arch-teach/SKILL.md` with an invocation of the global `drawio` skill. Updated `allowed-tools` accordingly.
+
+**Rationale:**
+The drawio MCP server declaration in `plugin.json` caused a `/doctor` duplicate warning for users who already have the drawio MCP configured globally. More importantly, the approach was wrong for public distribution: the plugin should not depend on the MCP server at all — the global `drawio` skill achieves the same result using the Write tool and the draw.io desktop CLI, with graceful fallback if the app is not installed.
+
+**References:**
+- Branch: feature/drawio-skill-integration
+
 ## [2026-05-11] Commit Summary
 
 **Change Type:** Docs

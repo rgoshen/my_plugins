@@ -190,7 +190,7 @@ When a pattern's deliverable includes a diagram (C4 context/container, sequence,
    - `<mxCell id="1" parent="0"/>` — default parent
    - All diagram cells with `parent="1"` and unique `id` values
 2. Write the XML to a descriptively named `.drawio` file in the working directory (e.g., `layered-arch.drawio`, `cqrs-flow.drawio`) using the Write tool.
-3. Open it in draw.io using `mcp__drawio__open_drawio_xml` — pass the same XML so the user sees the diagram immediately. If the MCP tool is unavailable (draw.io not installed), skip this step, keep the `.drawio` file, and tell the user to open it manually or install draw.io from [drawio.com](https://www.drawio.com/).
+3. Open it in draw.io using `mcp__drawio__open_drawio_xml` — pass the same XML so the user sees the diagram immediately. If the MCP tool is unavailable (draw.io MCP server not configured), skip this step, keep the `.drawio` file, and tell the user to open it manually and follow the setup guide at [github.com/jgraph/drawio-mcp/blob/main/skill-cli/README.md](https://github.com/jgraph/drawio-mcp/blob/main/skill-cli/README.md) to enable auto-open.
 
 The user refines the diagram in draw.io and saves it. The saved `.drawio` file is the artifact of record — reference it in the session log and in any ADR that documents the decision.
 

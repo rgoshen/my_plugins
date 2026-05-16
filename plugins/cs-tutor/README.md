@@ -12,11 +12,15 @@ A Claude Code plugin that provides senior-engineer mentors for learning computer
 
 ### draw.io (arch-teach only)
 
-The `arch-teach` skill produces native `.drawio` architectural diagrams and opens them automatically via the bundled draw.io MCP server. This requires the **draw.io desktop app**.
+The `arch-teach` skill produces native `.drawio` architectural diagrams and opens them automatically. Two components are required:
 
-- [Download draw.io](https://www.drawio.com/) — available for macOS, Windows, and Linux
+1. **draw.io desktop app** — the application that renders and edits `.drawio` files.
+   [Download draw.io](https://www.drawio.com/) — available for macOS, Windows, and Linux.
 
-The `@drawio/mcp` server is bundled in this plugin and configured automatically on install. If draw.io is not installed, diagram files are still written to disk — you can open them manually or at [app.diagrams.net](https://app.diagrams.net).
+2. **draw.io MCP server** — connects Claude Code to the draw.io desktop app so diagrams open automatically during sessions.
+   Setup instructions: [draw.io MCP server for Claude Code CLI](https://github.com/jgraph/drawio-mcp/blob/main/skill-cli/README.md)
+
+If neither is installed, diagram files are still written to disk — you can open them manually in the desktop app or at [app.diagrams.net](https://app.diagrams.net). If only the desktop app is installed (no MCP server), diagrams are written to disk but won't auto-open during the session.
 
 ---
 
@@ -88,7 +92,7 @@ Before the first concept, the tutor covers five things: **overview, history, ben
 
 ### Architectural diagrams (arch-teach)
 
-For each pattern, the tutor produces a native `.drawio` diagram — component maps, C4 containers, sequence diagrams, data flow. Diagrams open automatically in draw.io desktop via the bundled MCP server.
+For each pattern, the tutor produces a native `.drawio` diagram — component maps, C4 containers, sequence diagrams, data flow. Diagrams open automatically when the draw.io desktop app and MCP server are both installed (see Prerequisites); otherwise the `.drawio` file is written to disk for manual opening.
 
 ### Session export
 
