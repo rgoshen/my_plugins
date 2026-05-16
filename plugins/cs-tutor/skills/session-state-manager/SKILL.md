@@ -1,6 +1,6 @@
 ---
 name: session-state-manager
-description: Generic session state handler for cs-tutor sessions. Saves and loads lastsession.md, roadmap, and teaching-plan to preserve context across relaunches. Used internally by any teach skill; not invoked directly by users. Parameters are supplied by the calling skill.
+description: Use when a cs-tutor teach skill needs to persist or restore session state (lastsession.md, roadmap, teaching-plan) across conversations. Internal helper — not invoked directly by users; parameters supplied by the calling skill.
 allowed-tools: Read Write Glob Bash(date *) Bash(python3 *)
 ---
 
