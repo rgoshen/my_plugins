@@ -1,5 +1,45 @@
 # Summary
 
+## [2026-05-16 04:30] Commit Summary
+
+**Change Type:** Fix
+**Scope:** repo / gitignore
+
+**Summary:**
+Removed erroneously committed planning spec (`docs/superpowers/specs/2026-05-15-cs-tutor-curriculum-github-project-design.md`) and added `docs/superpowers/` to `.gitignore`. Planning artifacts belong in local working notes, not the repo.
+
+**Rationale:**
+Spec was a planning document whose content is already captured in the GitHub Project board and issues. No plugin or docs site functionality depended on it.
+
+## [2026-05-16 04:10] Commit Summary
+
+**Change Type:** Refactor
+**Scope:** cs-tutor / skills
+
+**Summary:**
+Renamed skill `tutor-persona` → `tutor-conduct`. Updated directory, SKILL.md frontmatter, H1 heading, and all agent file references. Updated description to follow "Use when..." convention and removed "persona" language — the skill defines behavioral conduct standards (WHAT), not an agent identity (WHO).
+
+**Rationale:**
+"tutor-persona" violated the agent/skill boundary defined in project conventions (agents = WHO, skills = WHAT). The name misled maintainers into thinking the skill defined the tutor's identity rather than its behavioral standards. "tutor-conduct" is accurate: the skill governs how tutors communicate, review, source knowledge, and what they refuse to do.
+
+**References:**
+- Issue: #7
+
+## [2026-05-16 03:45] Commit Summary
+
+**Change Type:** Feature
+**Scope:** cs-tutor / agents / skills
+
+**Summary:**
+Created `skills/tutor-persona/SKILL.md` and extracted four shared content blocks from both `arch-tutor.md` and `pl-tutor.md`: communication style, 4-part review structure, knowledge-sourcing philosophy (abstract principle), and shared "what you do not do" items. Both agent files now list `tutor-persona` in `skills:` frontmatter; extracted content removed from each.
+
+**Rationale:**
+Eliminates duplicated content across two agent files. At two tutors the cost is low; extracting now means any third tutor added in the future inherits all shared behavior for free by listing the skill — no copy-paste required. Subject-specific content (personas, domain methodology, lookup source priority, domain-specific prohibitions) remains in each agent.
+
+**References:**
+- TODO.md: [2026-05-11] Refactor: extract tutor-persona and session-prelude shared skills
+- Issue: #7
+
 ## [2026-05-15 17:19] Commit Summary
 
 **Change Type:** Fix
