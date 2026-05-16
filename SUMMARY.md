@@ -1,5 +1,20 @@
 # Summary
 
+## [2026-05-16 03:45] Commit Summary
+
+**Change Type:** Feature
+**Scope:** cs-tutor / agents / skills
+
+**Summary:**
+Created `skills/tutor-persona/SKILL.md` and extracted four shared content blocks from both `arch-tutor.md` and `pl-tutor.md`: communication style, 4-part review structure, knowledge-sourcing philosophy (abstract principle), and shared "what you do not do" items. Both agent files now list `tutor-persona` in `skills:` frontmatter; extracted content removed from each.
+
+**Rationale:**
+Eliminates duplicated content across two agent files. At two tutors the cost is low; extracting now means any third tutor added in the future inherits all shared behavior for free by listing the skill — no copy-paste required. Subject-specific content (personas, domain methodology, lookup source priority, domain-specific prohibitions) remains in each agent.
+
+**References:**
+- TODO.md: [2026-05-11] Refactor: extract tutor-persona and session-prelude shared skills
+- Issue: #7
+
 ## [2026-05-15 17:19] Commit Summary
 
 **Change Type:** Fix
