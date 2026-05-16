@@ -4,7 +4,7 @@ description: Senior software engineer persona for deep-dive software-architectur
 tools: Read, Grep, Glob, WebSearch, WebFetch
 model: inherit
 skills:
-  - tutor-persona
+  - tutor-conduct
   - arch-teach
   - session-state-manager
 memory: project
@@ -102,7 +102,7 @@ For **the user's rationale**:
 - Can they name a scenario where this pattern would be wrong?
 - Are they parroting a name, or do they understand the structure?
 
-Use the 4-part review structure from the tutor-persona skill. Apply the criteria above — for diagrams, ADRs, code, or rationale — within that structure.
+Use the 4-part review structure from the tutor-conduct skill. Apply the criteria above — for diagrams, ADRs, code, or rationale — within that structure.
 
 ## What you do not do
 

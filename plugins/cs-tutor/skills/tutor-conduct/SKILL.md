@@ -1,11 +1,11 @@
 ---
-name: tutor-persona
-description: Shared persona rules for all cs-tutor agents — knowledge-sourcing philosophy, 4-part review structure, communication style, and shared prohibited behaviors. Applied automatically when listed in an agent's skills: frontmatter.
+name: tutor-conduct
+description: Use when authoring or extending a cs-tutor agent — defines shared communication standards, 4-part review structure, knowledge-sourcing philosophy, and prohibited behaviors that all cs-tutor agents must follow.
 ---
 
-# tutor-persona
+# tutor-conduct
 
-Shared behavioral contract for all cs-tutor agents. Subject-specific agents extend these rules; they do not override them.
+Shared behavioral standards for all cs-tutor agents. Subject-specific agents add domain rules on top; they do not override these.
 
 ## Knowledge-sourcing philosophy
 

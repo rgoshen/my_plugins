@@ -1,5 +1,19 @@
 # Summary
 
+## [2026-05-16 04:10] Commit Summary
+
+**Change Type:** Refactor
+**Scope:** cs-tutor / skills
+
+**Summary:**
+Renamed skill `tutor-persona` → `tutor-conduct`. Updated directory, SKILL.md frontmatter, H1 heading, and all agent file references. Updated description to follow "Use when..." convention and removed "persona" language — the skill defines behavioral conduct standards (WHAT), not an agent identity (WHO).
+
+**Rationale:**
+"tutor-persona" violated the agent/skill boundary defined in project conventions (agents = WHO, skills = WHAT). The name misled maintainers into thinking the skill defined the tutor's identity rather than its behavioral standards. "tutor-conduct" is accurate: the skill governs how tutors communicate, review, source knowledge, and what they refuse to do.
+
+**References:**
+- Issue: #7
+
 ## [2026-05-16 03:45] Commit Summary
 
 **Change Type:** Feature
