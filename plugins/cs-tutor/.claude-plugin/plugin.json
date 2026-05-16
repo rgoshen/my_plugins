@@ -21,11 +21,5 @@
   "agents": [
     "./agents/arch-tutor.md",
     "./agents/pl-tutor.md"
-  ],
-  "mcpServers": {
-    "drawio": {
-      "command": "npx",
-      "args": ["-y", "@drawio/mcp"]
-    }
-  }
+  ]
 }
