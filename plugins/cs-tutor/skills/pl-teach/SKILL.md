@@ -1,6 +1,6 @@
 ---
 name: pl-teach
-description: Run a deep-dive programming language tutoring session in the current repo. Use when starting a new language curriculum, resuming a previous one, or continuing a learning project. Manages lastsession.md, language-roadmap.md, and teaching-plan.md, and activates the pl-tutor agent persona — a senior software engineer who teaches one concept at a time, has the user write all code themselves, and grounds every concept in current official documentation.
+description: Use when starting, resuming, or continuing a programming language learning curriculum with an interactive tutor in the current repo.
 disable-model-invocation: true
 argument-hint: "[language]"
 allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) Bash(mkdir *) Bash(python3 *)

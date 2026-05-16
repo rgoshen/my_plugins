@@ -1,5 +1,21 @@
 # Summary
 
+## [2026-05-16 14:00] Commit Summary
+
+**Change Type:** Fix
+**Scope:** cs-tutor / skill descriptions
+
+**Summary:**
+Rewrote description fields for arch-teach, pl-teach, and session-state-manager to comply with the writing-skills spec CSO rules. No skill body content was changed.
+
+**Rationale:**
+Descriptions that summarize workflow cause Claude to skip the full skill body and follow the description as a shortcut. All three descriptions now start with "Use when..." and contain only triggering conditions, under 500 characters.
+
+**References:**
+- Issue: GH-35
+
+---
+
 ## [2026-05-16 04:30] Commit Summary
 
 **Change Type:** Fix
