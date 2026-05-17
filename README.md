@@ -23,6 +23,10 @@ Rick Goshen's personal Claude Code plugin marketplace.
 /plugin install cs-tutor@my-plugins
 ```
 
+## Roadmap
+
+See [docs/ROADMAP.md](./docs/ROADMAP.md) for planned plugins and upcoming releases, or browse [GitHub Milestones](https://github.com/rgoshen/my_plugins/milestones) for live progress.
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) and the [Architecture docs](https://rgoshen.github.io/my_plugins/architecture).
