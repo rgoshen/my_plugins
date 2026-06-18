@@ -1,5 +1,21 @@
 # Summary
 
+## [2026-06-18 12:01] Commit Summary
+
+**Change Type:** Fix
+**Scope:** CI — release workflow
+
+**Summary:**
+Reworked `release.yml` plugin detection to find the directory containing `.claude-plugin/plugin.json` at any nesting depth and derive the plugin name/tag from the manifest `name` field, instead of assuming plugins live exactly one level under `plugins/` (`cut -d'/' -f2`). The `workflow_dispatch` name input now resolves to its directory by matching `plugin.json` `name`.
+
+**Rationale:**
+The new `swe/` grouping folder means `devops-engineer` lives at `plugins/swe/devops-engineer`. The old `cut -d'/' -f2` returned `swe`, found no `plugin.json`, and skipped the release. Manifest-based detection supports any depth and keeps `cs-tutor` working unchanged.
+
+**References:**
+- Branch: feature/devops-engineer
+
+---
+
 ## [2026-05-16 14:00] Commit Summary
 
 **Change Type:** Fix
