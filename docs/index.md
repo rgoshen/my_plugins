@@ -32,6 +32,7 @@ Once added, browse and install individual plugins:
 | Plugin | Category | Description |
 |---|---|---|
 | [cs-tutor](./plugins/cs-tutor) | Education | Senior-engineer mentors for architecture patterns and programming language learning |
+| [devops-engineer](./plugins/devops-engineer) | Development | Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS |
 
 ---
 

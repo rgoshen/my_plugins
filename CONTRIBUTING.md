@@ -12,6 +12,7 @@
    ├── commands/
    └── README.md
    ```
+   Plugins may also be nested under a grouping folder for a plugin family — e.g. `plugins/swe/devops-engineer/`. Set the marketplace `source` to the full path.
 2. Add `.claude-plugin/plugin.json` with `name`, `description`, and `version`
 3. Add at least one skill, agent, or command
 4. Add `README.md` documenting what the plugin provides and how to use it

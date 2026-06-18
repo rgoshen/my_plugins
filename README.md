@@ -16,6 +16,7 @@ Rick Goshen's personal Claude Code plugin marketplace.
 | Plugin | Version | Description |
 |---|---|---|
 | [cs-tutor](./plugins/cs-tutor/README.md) | ![cs-tutor version](https://img.shields.io/badge/cs--tutor-v0.0.3-blue.svg) | Senior-engineer mentors for architecture patterns and programming language learning |
+| [devops-engineer](./plugins/swe/devops-engineer/README.md) | ![devops-engineer version](https://img.shields.io/badge/devops--engineer-v0.1.0-blue.svg) | Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS |
 
 ## Install a plugin
 

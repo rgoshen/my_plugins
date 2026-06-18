@@ -1,5 +1,21 @@
 # Summary
 
+## [2026-06-18 12:09] Commit Summary
+
+**Change Type:** Docs
+**Scope:** marketplace docs, roadmap, conventions
+
+**Summary:**
+Registered `devops-engineer` across all marketplace documentation: root README, docs site (`index.md`, `plugins/index.md`, and a new `plugins/devops-engineer.md` page mirroring the cs-tutor page), and `docs/ROADMAP.md` (released entry + a new swe-family planned section listing backend-engineer, frontend-engineer, sre, security-engineer, software-architect + a Plugin Registry row). Noted in `CLAUDE.md` and `CONTRIBUTING.md` that plugins may be nested under a grouping folder, with the marketplace `source` pointing to the actual directory at any depth.
+
+**Rationale:**
+User asked that all applicable documentation be updated, and that the swe family get its own roadmap (separate plugins, same marketplace) parallel to cs-tutor.
+
+**References:**
+- Branch: feature/devops-engineer
+
+---
+
 ## [2026-06-18 12:04] Commit Summary
 
 **Change Type:** Feature
