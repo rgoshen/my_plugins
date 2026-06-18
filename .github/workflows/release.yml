@@ -31,11 +31,17 @@ jobs:
               name=$(jq -r '.name' "$pj")
               if [ "$name" = "$PLUGIN_INPUT" ]; then dirname "$(dirname "$pj")"; fi
             done | sort -u | tr '\n' ' ')
+            if [ -z "${DIRS// /}" ]; then
+              echo "::error::No plugin found with name '${PLUGIN_INPUT}'. Check the 'name' field in a plugin.json."
+              exit 1
+            fi
             echo "plugins=${DIRS}" >> "$GITHUB_OUTPUT"
             echo "Manual release dir(s): ${DIRS}"
           else
             # For each changed file under plugins/, walk up to the nearest dir
             # containing .claude-plugin/plugin.json — supports any nesting depth.
+            # '|| true' keeps a docs-only push (grep no-match under -eo pipefail)
+            # from failing this step; the release step is then skipped on empty.
             DIRS=$(git diff --name-only HEAD~1 HEAD 2>/dev/null \
               | grep '^plugins/' \
               | while read -r f; do
@@ -45,7 +51,7 @@ jobs:
                     d=$(dirname "$d")
                   done
                 done \
-              | sort -u | tr '\n' ' ')
+              | sort -u | tr '\n' ' ' || true)
             echo "plugins=${DIRS}" >> "$GITHUB_OUTPUT"
             echo "Detected changed plugin dir(s): ${DIRS}"
           fi

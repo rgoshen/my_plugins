@@ -1,6 +1,19 @@
 # Summary
 
-## [2026-06-18 12:41] Commit Summary
+## [2026-06-18 14:09] Commit Summary
+
+**Change Type:** Fix
+**Scope:** CI — release workflow; repo — AGENTS.md
+
+**Summary:**
+Addressed PR #40 review comments. (1) `release.yml` detection step: appended `|| true` to the changed-files pipeline so a docs-only push to `main` (where `grep '^plugins/'` no-matches under GitHub's default `-eo pipefail` shell) no longer aborts the step with red CI. (2) `release.yml` manual-dispatch branch: emit a `::error::` and `exit 1` when a `workflow_dispatch` plugin name matches no manifest, instead of going green as a silent no-op. (3) Deleted `AGENTS.md`, which had been produced by a blind Claude→Codex find/replace that corrupted real `.claude-plugin/`, `claude`, and `code.claude.com` tokens.
+
+**Rationale:**
+Reviewer (rgoshen) flagged a real CI failure mode for docs-only pushes, a silent failure on mistyped manual releases, and a corrupted generated file. All three agreed with and fixed; AGENTS.md removed per maintainer instruction rather than regenerated.
+
+**References:**
+- PR: #40
+- Branch: feature/devops-engineer
 
 **Change Type:** Docs
 **Scope:** ROADMAP — swe family issue links
