@@ -1,5 +1,22 @@
 # Summary
 
+## [2026-06-18 12:41] Commit Summary
+
+**Change Type:** Docs
+**Scope:** ROADMAP — swe family issue links
+
+**Summary:**
+Linked the five planned swe-family plugins to their newly created tracking issues in `docs/ROADMAP.md` (#41 backend-engineer, #42 frontend-engineer, #43 sre, #44 security-engineer, #45 software-architect) and updated the note from "Issues/milestones TBD" to "Milestones TBD". Issues were created in `rgoshen/my_plugins` and added to the "my_plugins Development" project (#3).
+
+**Rationale:**
+The roadmap stated issues were TBD; they now exist, so the roadmap is updated to reference them — matching how the cs-tutor planned sections link their issues, and giving each planned plugin a traceable tracking issue.
+
+**References:**
+- Branch: feature/devops-engineer
+- Issues: #41, #42, #43, #44, #45
+
+---
+
 ## [2026-06-18 12:09] Commit Summary
 
 **Change Type:** Docs

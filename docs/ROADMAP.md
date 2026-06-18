@@ -103,15 +103,15 @@ New plugin wiring the existing `ai-engineer` agent and skills into an installabl
 ---
 
 ### swe family (planned)
-**Folder:** `plugins/swe/` | Each role is its own standalone plugin, a senior-engineer persona like `devops-engineer`. Issues/milestones TBD.
+**Folder:** `plugins/swe/` | Each role is its own standalone plugin, a senior-engineer persona like `devops-engineer`. Milestones TBD.
 
-| Plugin | Focus |
-|---|---|
-| `backend-engineer` | APIs, services, data modeling, service design |
-| `frontend-engineer` | UI architecture, state, accessibility, performance |
-| `sre` | SLOs, observability, incident response, reliability |
-| `security-engineer` | Threat modeling, OWASP, secure design review |
-| `software-architect` | System design, architecture tradeoffs, ADRs |
+| Issue | Plugin | Focus |
+|---|---|---|
+| [#41](https://github.com/rgoshen/my_plugins/issues/41) | `backend-engineer` | APIs, services, data modeling, service design |
+| [#42](https://github.com/rgoshen/my_plugins/issues/42) | `frontend-engineer` | UI architecture, state, accessibility, performance |
+| [#43](https://github.com/rgoshen/my_plugins/issues/43) | `sre` | SLOs, observability, incident response, reliability |
+| [#44](https://github.com/rgoshen/my_plugins/issues/44) | `security-engineer` | Threat modeling, OWASP, secure design review |
+| [#45](https://github.com/rgoshen/my_plugins/issues/45) | `software-architect` | System design, architecture tradeoffs, ADRs |
 
 ---
 
