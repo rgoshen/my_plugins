@@ -1,5 +1,84 @@
 # Summary
 
+## [2026-06-18 14:09] Commit Summary
+
+**Change Type:** Fix
+**Scope:** CI — release workflow; repo — AGENTS.md
+
+**Summary:**
+Addressed PR #40 review comments. (1) `release.yml` detection step: appended `|| true` to the changed-files pipeline so a docs-only push to `main` (where `grep '^plugins/'` no-matches under GitHub's default `-eo pipefail` shell) no longer aborts the step with red CI. (2) `release.yml` manual-dispatch branch: emit a `::error::` and `exit 1` when a `workflow_dispatch` plugin name matches no manifest, instead of going green as a silent no-op. (3) Deleted `AGENTS.md`, which had been produced by a blind Claude→Codex find/replace that corrupted real `.claude-plugin/`, `claude`, and `code.claude.com` tokens.
+
+**Rationale:**
+Reviewer (rgoshen) flagged a real CI failure mode for docs-only pushes, a silent failure on mistyped manual releases, and a corrupted generated file. All three agreed with and fixed; AGENTS.md removed per maintainer instruction rather than regenerated.
+
+**References:**
+- PR: #40
+- Branch: feature/devops-engineer
+
+**Change Type:** Docs
+**Scope:** ROADMAP — swe family issue links
+
+**Summary:**
+Linked the five planned swe-family plugins to their newly created tracking issues in `docs/ROADMAP.md` (#41 backend-engineer, #42 frontend-engineer, #43 sre, #44 security-engineer, #45 software-architect) and updated the note from "Issues/milestones TBD" to "Milestones TBD". Issues were created in `rgoshen/my_plugins` and added to the "my_plugins Development" project (#3).
+
+**Rationale:**
+The roadmap stated issues were TBD; they now exist, so the roadmap is updated to reference them — matching how the cs-tutor planned sections link their issues, and giving each planned plugin a traceable tracking issue.
+
+**References:**
+- Branch: feature/devops-engineer
+- Issues: #41, #42, #43, #44, #45
+
+---
+
+## [2026-06-18 12:09] Commit Summary
+
+**Change Type:** Docs
+**Scope:** marketplace docs, roadmap, conventions
+
+**Summary:**
+Registered `devops-engineer` across all marketplace documentation: root README, docs site (`index.md`, `plugins/index.md`, and a new `plugins/devops-engineer.md` page mirroring the cs-tutor page), and `docs/ROADMAP.md` (released entry + a new swe-family planned section listing backend-engineer, frontend-engineer, sre, security-engineer, software-architect + a Plugin Registry row). Noted in `CLAUDE.md` and `CONTRIBUTING.md` that plugins may be nested under a grouping folder, with the marketplace `source` pointing to the actual directory at any depth.
+
+**Rationale:**
+User asked that all applicable documentation be updated, and that the swe family get its own roadmap (separate plugins, same marketplace) parallel to cs-tutor.
+
+**References:**
+- Branch: feature/devops-engineer
+
+---
+
+## [2026-06-18 12:04] Commit Summary
+
+**Change Type:** Feature
+**Scope:** devops-engineer plugin (new) + marketplace registry
+
+**Summary:**
+Added the `devops-engineer` plugin under a new `plugins/swe/` grouping folder: skill (`skills/devops-engineer/` + `references/conventions.md`), delegated sub-agent, Context7 `.mcp.json`, README, and CHANGELOG. Registered it in `marketplace.json` (`source: ./plugins/swe/devops-engineer`) and broadened the marketplace description to cover the software-engineering family. `claude plugin validate .` passes for both the marketplace and the plugin.
+
+**Rationale:**
+First member of the `swe` plugin family. `swe/` is an organizing folder of independent plugins (not a single grouped plugin), so devops-engineer is registered as its own marketplace entry with its own version/lifecycle. The source dual-entry design (inline skill + delegated agent sharing one skill body, with Context7 for live docs) was preserved unchanged.
+
+**References:**
+- Branch: feature/devops-engineer
+- Source: ~/Downloads/devops-engineer-plugin
+
+---
+
+## [2026-06-18 12:01] Commit Summary
+
+**Change Type:** Fix
+**Scope:** CI — release workflow
+
+**Summary:**
+Reworked `release.yml` plugin detection to find the directory containing `.claude-plugin/plugin.json` at any nesting depth and derive the plugin name/tag from the manifest `name` field, instead of assuming plugins live exactly one level under `plugins/` (`cut -d'/' -f2`). The `workflow_dispatch` name input now resolves to its directory by matching `plugin.json` `name`.
+
+**Rationale:**
+The new `swe/` grouping folder means `devops-engineer` lives at `plugins/swe/devops-engineer`. The old `cut -d'/' -f2` returned `swe`, found no `plugin.json`, and skipped the release. Manifest-based detection supports any depth and keeps `cs-tutor` working unchanged.
+
+**References:**
+- Branch: feature/devops-engineer
+
+---
+
 ## [2026-05-16 14:00] Commit Summary
 
 **Change Type:** Fix

@@ -31,6 +31,8 @@ my_plugins/
 └── SUMMARY.md
 ```
 
+> **Plugin grouping:** plugins normally live at `plugins/<plugin-name>/`, but may be nested under an optional grouping folder for a plugin *family* — e.g. `plugins/swe/devops-engineer/`. The marketplace `source` points to the actual plugin directory at any depth, and `release.yml` detects plugins by the location of their `.claude-plugin/plugin.json`.
+
 ---
 
 ## Plugin Conventions

@@ -18,6 +18,9 @@ Core language and architecture tutors. `arch-teach` and `pl-teach` skills added.
 ### v0.2.0 — cs-tutor (current)
 Shared session infrastructure and core tutor skills.
 
+### v0.1.0 — devops-engineer (swe family)
+**Plugin:** `devops-engineer` | First plugin in the `swe` family (`plugins/swe/`). Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS — inline skill + delegated sub-agent with Context7 lookup.
+
 ---
 
 ## Planned
@@ -99,10 +102,24 @@ New plugin wiring the existing `ai-engineer` agent and skills into an installabl
 
 ---
 
+### swe family (planned)
+**Folder:** `plugins/swe/` | Each role is its own standalone plugin, a senior-engineer persona like `devops-engineer`. Milestones TBD.
+
+| Issue | Plugin | Focus |
+|---|---|---|
+| [#41](https://github.com/rgoshen/my_plugins/issues/41) | `backend-engineer` | APIs, services, data modeling, service design |
+| [#42](https://github.com/rgoshen/my_plugins/issues/42) | `frontend-engineer` | UI architecture, state, accessibility, performance |
+| [#43](https://github.com/rgoshen/my_plugins/issues/43) | `sre` | SLOs, observability, incident response, reliability |
+| [#44](https://github.com/rgoshen/my_plugins/issues/44) | `security-engineer` | Threat modeling, OWASP, secure design review |
+| [#45](https://github.com/rgoshen/my_plugins/issues/45) | `software-architect` | System design, architecture tradeoffs, ADRs |
+
+---
+
 ## Plugin Registry
 
 | Plugin | Status | Latest Version | Description |
 |---|---|---|---|
 | `cs-tutor` | active | v0.2.0 | Senior-engineer mentors for CS topics |
+| `devops-engineer` | active | v0.1.0 | Senior DevOps specialist (OpenTofu/Terraform/IaC/AWS) |
 | `project-scaffolding` | planned | — | Scaffold project files from templates |
 | `ai-engineer` | planned | — | Senior AI engineer agent and skills |

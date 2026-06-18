@@ -25,32 +25,54 @@ jobs:
         env:
           PLUGIN_INPUT: ${{ github.event.inputs.plugin }}
         run: |
-          if [ -n "$PLUGIN_INPUT" ]; then
-            echo "plugins=$PLUGIN_INPUT" >> $GITHUB_OUTPUT
+          if [ -n "${PLUGIN_INPUT}" ]; then
+            # Resolve a plugin name to its directory by matching plugin.json "name".
+            DIRS=$(find plugins -path '*/.claude-plugin/plugin.json' | while read -r pj; do
+              name=$(jq -r '.name' "$pj")
+              if [ "$name" = "$PLUGIN_INPUT" ]; then dirname "$(dirname "$pj")"; fi
+            done | sort -u | tr '\n' ' ')
+            if [ -z "${DIRS// /}" ]; then
+              echo "::error::No plugin found with name '${PLUGIN_INPUT}'. Check the 'name' field in a plugin.json."
+              exit 1
+            fi
+            echo "plugins=${DIRS}" >> "$GITHUB_OUTPUT"
+            echo "Manual release dir(s): ${DIRS}"
           else
-            CHANGED=$(git diff --name-only HEAD~1 HEAD 2>/dev/null \
-              | grep "^plugins/" | cut -d'/' -f2 | sort -u | tr '\n' ' ')
-            echo "plugins=${CHANGED}" >> $GITHUB_OUTPUT
-            echo "Detected changed plugins: ${CHANGED}"
+            # For each changed file under plugins/, walk up to the nearest dir
+            # containing .claude-plugin/plugin.json — supports any nesting depth.
+            # '|| true' keeps a docs-only push (grep no-match under -eo pipefail)
+            # from failing this step; the release step is then skipped on empty.
+            DIRS=$(git diff --name-only HEAD~1 HEAD 2>/dev/null \
+              | grep '^plugins/' \
+              | while read -r f; do
+                  d=$(dirname "$f")
+                  while [ "$d" != "." ] && [ "$d" != "/" ]; do
+                    if [ -f "$d/.claude-plugin/plugin.json" ]; then echo "$d"; break; fi
+                    d=$(dirname "$d")
+                  done
+                done \
+              | sort -u | tr '\n' ' ' || true)
+            echo "plugins=${DIRS}" >> "$GITHUB_OUTPUT"
+            echo "Detected changed plugin dir(s): ${DIRS}"
           fi
 
       - name: Create releases for changed plugins
         if: steps.changes.outputs.plugins != ''
         env:
-          PLUGINS: ${{ steps.changes.outputs.plugins }}
+          PLUGIN_DIRS: ${{ steps.changes.outputs.plugins }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
           RELEASED_ANYTHING=false
 
-          for PLUGIN in $PLUGINS; do
-            PLUGIN_DIR="plugins/${PLUGIN}"
+          for PLUGIN_DIR in $PLUGIN_DIRS; do
             PLUGIN_JSON="${PLUGIN_DIR}/.claude-plugin/plugin.json"
             CHANGELOG="${PLUGIN_DIR}/CHANGELOG.md"
 
-            [[ ! -f "$PLUGIN_JSON" ]] && { echo "No plugin.json for ${PLUGIN}, skipping."; continue; }
+            [[ ! -f "$PLUGIN_JSON" ]] && { echo "No plugin.json in ${PLUGIN_DIR}, skipping."; continue; }
 
+            PLUGIN=$(jq -r '.name' "$PLUGIN_JSON")
             VERSION=$(jq -r '.version' "$PLUGIN_JSON")
             TAG="${PLUGIN}-v${VERSION}"
 
