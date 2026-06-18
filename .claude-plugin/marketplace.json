@@ -1,7 +1,7 @@
 {
     "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
     "name": "my-plugins",
-    "description": "Rick Goshen's personal Claude Code plugin marketplace — CS tutoring agents and skills.",
+    "description": "Rick Goshen's personal Claude Code plugin marketplace — CS tutoring plus software-engineering specialist agents and skills.",
     "owner": {
         "name": "Rick Goshen",
         "email": "rick.goshen@gmail.com"
@@ -15,6 +15,14 @@
             "category": "education",
             "tags": ["education", "tutoring", "computer-science", "architecture", "programming-languages", "learning", "mentoring"],
             "homepage": "https://rgoshen.github.io/my_plugins/plugins/cs-tutor"
+        },
+        {
+            "name": "devops-engineer",
+            "source": "./plugins/swe/devops-engineer",
+            "description": "Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS — inline skill plus a delegated sub-agent with Context7 docs lookup.",
+            "category": "development",
+            "tags": ["devops", "opentofu", "terraform", "iac", "aws", "infrastructure", "platform-engineering"],
+            "homepage": "https://rgoshen.github.io/my_plugins/plugins/devops-engineer"
         }
     ]
 }

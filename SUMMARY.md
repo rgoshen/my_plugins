@@ -1,5 +1,22 @@
 # Summary
 
+## [2026-06-18 12:04] Commit Summary
+
+**Change Type:** Feature
+**Scope:** devops-engineer plugin (new) + marketplace registry
+
+**Summary:**
+Added the `devops-engineer` plugin under a new `plugins/swe/` grouping folder: skill (`skills/devops-engineer/` + `references/conventions.md`), delegated sub-agent, Context7 `.mcp.json`, README, and CHANGELOG. Registered it in `marketplace.json` (`source: ./plugins/swe/devops-engineer`) and broadened the marketplace description to cover the software-engineering family. `claude plugin validate .` passes for both the marketplace and the plugin.
+
+**Rationale:**
+First member of the `swe` plugin family. `swe/` is an organizing folder of independent plugins (not a single grouped plugin), so devops-engineer is registered as its own marketplace entry with its own version/lifecycle. The source dual-entry design (inline skill + delegated agent sharing one skill body, with Context7 for live docs) was preserved unchanged.
+
+**References:**
+- Branch: feature/devops-engineer
+- Source: ~/Downloads/devops-engineer-plugin
+
+---
+
 ## [2026-06-18 12:01] Commit Summary
 
 **Change Type:** Fix
