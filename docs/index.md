@@ -33,6 +33,7 @@ Once added, browse and install individual plugins:
 |---|---|---|
 | [cs-tutor](./plugins/cs-tutor) | Education | Senior-engineer mentors for architecture patterns and programming language learning |
 | [devops-engineer](./plugins/devops-engineer) | Development | Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS |
+| [ai-engineer](./plugins/ai-engineer) | Development | Senior AI/ML engineer — decision-framework sub-agent plus focused skills for RAG, evaluation, model selection, fine-tuning, inference, and deployment |
 
 ---
 

@@ -21,6 +21,9 @@ Shared session infrastructure and core tutor skills.
 ### v0.1.0 — devops-engineer (swe family)
 **Plugin:** `devops-engineer` | First plugin in the `swe` family (`plugins/swe/`). Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS — inline skill + delegated sub-agent with Context7 lookup.
 
+### v0.1.0 — ai-engineer (swe family)
+**Plugin:** `ai-engineer` | Second plugin in the `swe` family (`plugins/swe/`). Senior AI/ML engineer — a self-contained decision-framework sub-agent plus nine indexed skills (RAG, evaluation, security, model selection, inference, agent design, fine-tuning, deployment), wired to Context7.
+
 ---
 
 ## Planned
@@ -91,17 +94,6 @@ New plugin for scaffolding standard project files from `~/.claude/templates/` on
 
 ---
 
-### v0.7.0 — ai-engineer plugin
-**Plugin:** `ai-engineer` (new) | **Milestone:** [v0.5.0](https://github.com/rgoshen/my_plugins/milestone/9)
-
-New plugin wiring the existing `ai-engineer` agent and skills into an installable, discoverable plugin.
-
-| Issue | Feature |
-|---|---|
-| [#38](https://github.com/rgoshen/my_plugins/issues/38) | plugin scaffold + asset wiring |
-
----
-
 ### swe family (planned)
 **Folder:** `plugins/swe/` | Each role is its own standalone plugin, a senior-engineer persona like `devops-engineer`. Milestones TBD.
 
@@ -122,4 +114,4 @@ New plugin wiring the existing `ai-engineer` agent and skills into an installabl
 | `cs-tutor` | active | v0.2.0 | Senior-engineer mentors for CS topics |
 | `devops-engineer` | active | v0.1.0 | Senior DevOps specialist (OpenTofu/Terraform/IaC/AWS) |
 | `project-scaffolding` | planned | — | Scaffold project files from templates |
-| `ai-engineer` | planned | — | Senior AI engineer agent and skills |
+| `ai-engineer` | active | v0.1.0 | Senior AI engineer agent and skills |

@@ -17,3 +17,4 @@ All plugins available in this marketplace. Install the marketplace first, then i
 |---|---|---|---|
 | [cs-tutor](./cs-tutor) | ![version](https://img.shields.io/badge/version-v0.0.1-blue.svg) | Education | Senior-engineer mentors for architecture patterns and programming language learning |
 | [devops-engineer](./devops-engineer) | ![version](https://img.shields.io/badge/version-v0.1.0-blue.svg) | Development | Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS |
+| [ai-engineer](./ai-engineer) | ![version](https://img.shields.io/badge/version-v0.1.0-blue.svg) | Development | Senior AI/ML engineer — decision-framework sub-agent plus focused skills for RAG, evaluation, model selection, fine-tuning, inference, and deployment |

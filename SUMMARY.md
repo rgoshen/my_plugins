@@ -1,5 +1,20 @@
 # Summary
 
+## [2026-06-18 19:24] Commit Summary
+
+**Change Type:** Feature
+**Scope:** plugins/swe — ai-engineer plugin
+
+**Summary:**
+Integrated the `ai-engineer` plugin into the `my_plugins` marketplace under `plugins/swe/ai-engineer/`, mirroring the established `devops-engineer` pattern. Imported the senior AI-engineer sub-agent (renamed `agents/ai-engineer.md`, added `skills: [ai-engineer]` frontmatter and a Context7 documentation-lookup mandate) and its nine skills (the `ai-engineer` index plus `rag-patterns`, `llm-evaluation`, `llm-security`, `model-selection`, `inference-architecture`, `agent-design`, `fine-tuning`, `ai-deployment`). Added `.claude-plugin/plugin.json`, `.mcp.json` (Context7), `README.md`, and `CHANGELOG.md`; registered the plugin in `.claude-plugin/marketplace.json`; mirrored the docs surface (root `README.md`, `docs/index.md`, `docs/plugins/index.md`, new `docs/plugins/ai-engineer.md`); and moved the ai-engineer ROADMAP entry from Planned to Released (Plugin Registry row -> active v0.1.0).
+
+**Rationale:**
+Keeps the two `swe`-family plugins structurally consistent. Context7 is wired (matching devops-engineer) because AI/ML model facts — identifiers, context-window limits, pricing, runtime flags — drift monthly and are where training-data recall goes stale. The agent carries the `ai-engineer` index skill via `skills:` per the repo component model; the eight focused skills auto-invoke by description on the main thread. Confirmed the `agent-design` skill is present, so the index skill has no dead reference.
+
+**References:**
+- Issue: #38
+- Branch: feature/ai-engineer
+
 ## [2026-06-18 14:09] Commit Summary
 
 **Change Type:** Fix
