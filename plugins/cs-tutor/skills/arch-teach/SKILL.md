@@ -1,10 +1,8 @@
 ---
 name: arch-teach
 description: Use when starting, resuming, or continuing a software architecture patterns curriculum with an interactive tutor in the current repo.
-disable-model-invocation: true
 argument-hint: "[starting-topic]"
 allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) Bash(mkdir *) Bash(python3 *) mcp__drawio__open_drawio_xml mcp__drawio__open_drawio_mermaid mcp__drawio__open_drawio_csv
-model: inherit
 ---
 
 # arch-teach

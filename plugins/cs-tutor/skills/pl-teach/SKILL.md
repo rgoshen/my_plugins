@@ -1,10 +1,8 @@
 ---
 name: pl-teach
 description: Use when starting, resuming, or continuing a programming language learning curriculum with an interactive tutor in the current repo.
-disable-model-invocation: true
 argument-hint: "[language]"
 allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) Bash(mkdir *) Bash(python3 *)
-model: inherit
 ---
 
 # pl-teach

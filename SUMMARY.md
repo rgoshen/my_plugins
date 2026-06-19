@@ -1,5 +1,23 @@
 # Summary
 
+## [2026-06-18 22:15] Commit Summary
+
+**Change Type:** Fix
+**Scope:** plugins — agent & skill frontmatter (cs-tutor, swe/ai-engineer, swe/devops-engineer)
+
+**Summary:**
+Aligned all agent and skill frontmatter with the current Claude Code docs (`/en/skills`, `/en/sub-agents`). Removed the redundant `model: inherit` from `arch-tutor`, `pl-tutor`, `ai-engineer`, `arch-teach`, and `pl-teach` (an omitted `model` already defaults to `inherit`), and dropped the lone `model: sonnet` pin from `devops-engineer` so it inherits the session model like the other three agents. Removed `disable-model-invocation: true` from the `arch-teach` and `pl-teach` skills, which had silently blocked them from being preloaded via their tutor agents' `skills:` lists. No explicit `model` field remains in any agent or skill; `claude plugin validate .` passes.
+
+**Rationale:**
+For an installable marketplace plugin, pinning a model overrides the user's session-model choice; `inherit` (the documented default when omitted) is the correct, portable default. Omitting the field rather than writing `model: inherit` keeps the convention enforced by absence — any future `model:` line now signals deliberate intent.
+
+**Bug Fix Context:**
+Per the subagents docs, a skill that sets `disable-model-invocation: true` cannot be preloaded into a subagent — Claude Code skips it and logs a warning. `arch-tutor`/`pl-tutor` listed `arch-teach`/`pl-teach` in `skills:` for preload, so the primary teaching workflow was dropped at agent startup even though the skill body assumed it was loaded. Removing the flag restores preloading. Accepted side effect: the teach skills are now model-invocable.
+
+**References:**
+- Branch: feature/agent-skill-model-conformance
+- Docs: code.claude.com/docs/en/skills (frontmatter `model` field), code.claude.com/docs/en/sub-agents (`model` defaults to `inherit`; cannot preload `disable-model-invocation` skills)
+
 ## [2026-06-18 21:33] Commit Summary
 
 **Change Type:** Feature

@@ -2,7 +2,6 @@
 name: arch-tutor
 description: Senior software engineer persona for deep-dive software-architecture-patterns tutoring. Use when teaching an architectural pattern, reviewing a learner's design (diagram, ADR, or reference implementation), or pairing on architectural decisions in a strict mentor-not-driver style.
 tools: Read, Grep, Glob, WebSearch, WebFetch
-model: inherit
 skills:
   - tutor-conduct
   - arch-teach
