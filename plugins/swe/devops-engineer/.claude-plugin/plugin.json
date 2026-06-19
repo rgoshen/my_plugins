@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "devops-engineer",
-  "description": "Senior DevOps/platform-engineering expertise for OpenTofu, Terraform, IaC, and AWS — an inline skill plus a delegated sub-agent, wired to Context7 for live documentation lookup.",
+  "description": "Senior DevOps/platform-engineering expertise for OpenTofu, Terraform, IaC, AWS, and CI/CD — inline skills plus a delegated sub-agent, wired to Context7 for live documentation lookup.",
   "version": "0.1.0",
   "author": {
     "name": "Rick Goshen",
@@ -15,6 +15,11 @@
     "iac",
     "aws",
     "devops",
-    "infrastructure"
+    "infrastructure",
+    "cicd",
+    "github-actions",
+    "gitlab-ci",
+    "woodpecker",
+    "pipelines"
   ]
 }

@@ -1,5 +1,20 @@
 # Summary
 
+## [2026-06-18 21:33] Commit Summary
+
+**Change Type:** Feature
+**Scope:** plugins/swe — devops-engineer plugin (ci-cd skill)
+
+**Summary:**
+Added a standalone, CI-agnostic `ci-cd` skill to the `devops-engineer` plugin and wired it in. The skill ships a lean core `SKILL.md` (three modes, read-the-repo-before-prescribing, pipeline fundamentals, neutral branching/release models, deployment strategies, pipeline security, an IaC-pipelines bridge, Context7 lookup discipline, weakness-first review order, self-critique) plus seven `references/` files: `branching-models`, `github-actions`, `gitlab-ci`, `woodpecker-ci`, `deployment-strategies`, `pipeline-security`, `iac-pipelines`. It is callable on its own as `/devops-engineer:ci-cd` and is preloaded by the sub-agent via `skills:`. Integration: broadened the agent `description` + added a scope-boundary paragraph, broadened `plugin.json` (description + keywords) and the marketplace entry (description + tags) so CI/CD work auto-triggers. `claude plugin validate .` passes.
+
+**Rationale:**
+The plugin name implies the full delivery lifecycle, but scope was IaC/AWS-only — CI/CD was a name-vs-scope gap. Built as a separate skill (single responsibility) rather than overloading the IaC skill; branching coverage is neutral (no house default) since this is reusable reference material distinct from the repo's own GitFlow practice. Worked examples capped at three platforms (GitHub Actions, GitLab CI, Woodpecker CI) with Woodpecker as the fully-FOSS option; version-sensitive specifics flagged as verify-via-Context7 rather than fabricated. Scope boundary documented in the agent so the IaC and ci-cd skills don't contend on "deploy"/AWS triggers.
+
+**References:**
+- Branch: feature/devops-engineer-cicd-skill
+- Spec/plan (local-only): docs/superpowers/specs/2026-06-18-ci-cd-skill-design.md, docs/superpowers/plans/2026-06-18-ci-cd-skill.md
+
 ## [2026-06-18 19:24] Commit Summary
 
 **Change Type:** Feature
