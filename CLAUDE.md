@@ -62,6 +62,12 @@ Read `~/.claude/agents/arch-tutor.md` and adopt that persona.
 ...
 ```
 
+### Agent vs. skill-only — and the command/skill name trap
+
+- Use an **agent** when the work is autonomous and Claude should *delegate* to it (e.g. `devops-engineer`, `ai-engineer`). A subagent runs its task and returns a summary.
+- Use a **skill-only** design for **interactive, user-initiated** workflows (e.g. the cs-tutor teach skills). A plugin slash command runs the skill **inline in the main thread**, which is what preserves the back-and-forth; it cannot launch an interactive persona agent. The skill must be self-contained and load any shared skills it needs at startup via the Skill tool.
+- **Never give a command and a skill the same name.** They share the `/plugin:name` shortcut and the skill wins — the command is silently shadowed. (Source: code.claude.com/docs/en/skills.)
+
 ### Never hardcode `~/.claude/` paths in hooks or MCP configs either
 Use `${CLAUDE_PLUGIN_ROOT}` for paths within the plugin in hook commands and MCP server configs.
 
