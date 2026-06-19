@@ -1,5 +1,21 @@
 # Summary
 
+## [2026-06-18 22:53] Commit Summary
+
+**Change Type:** Refactor
+**Scope:** plugins/cs-tutor — agents, commands, skills; repo CLAUDE.md
+
+**Summary:**
+Redesigned cs-tutor from a Command → Agent → Skill structure to a self-contained skill-centered one. The mentor stance and the generic per-concept teaching loop moved into the shared `tutor-conduct` skill; subject-specific review criteria and lookup sources fold into each teach skill (`arch-teach`, `pl-teach`), which now load `tutor-conduct` and `session-state-manager` via the Skill tool at the start of a session instead of assuming an agent preloaded them. The `arch-tutor`/`pl-tutor` agent files and the `arch-teach`/`pl-teach` command files are removed. Repo `CLAUDE.md` gains guidance on choosing an agent (autonomous delegation) vs a skill-only design (interactive, user-initiated workflows) and a warning never to give a command and a skill the same name. Implemented as several atomic commits on `feature/agent-skill-model-conformance`.
+
+**Rationale:**
+Verified against the current Claude Code docs: a plugin command and a same-named skill share the `/plugin:name` shortcut and the skill wins, so `/cs-tutor:arch-teach` already ran the skill inline rather than the agent — and the inline path is what makes the tutoring interactive (a subagent or `context: fork` runs once and returns a summary, which would break a multi-turn, resumable teaching session). The persona therefore had to live in the skill layer. Extraction tracks sharing: the mentor stance is identical across tutors so it goes to `tutor-conduct`; review criteria are 1:1 with a subject so they fold into the teach skill. This also removes the skills' false "already loaded in your context" claims and their path references to agent files (forbidden by the repo CLAUDE.md).
+
+**References:**
+- Branch: feature/agent-skill-model-conformance (base commit 3393feb)
+- Spec/plan (local-only): docs/superpowers/specs/2026-06-18-cs-tutor-skill-centered-redesign.md, docs/superpowers/plans/2026-06-18-cs-tutor-skill-centered-redesign.md
+- Docs: code.claude.com/docs/en/skills (skill beats command; context:fork one-shot), code.claude.com/docs/en/sub-agents (subagents return summaries)
+
 ## [2026-06-18 22:15] Commit Summary
 
 **Change Type:** Fix
