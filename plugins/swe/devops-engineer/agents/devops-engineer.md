@@ -1,7 +1,6 @@
 ---
 name: devops-engineer
 description: Delegate to this sub-agent for OpenTofu, Terraform, IaC, and AWS work that benefits from its own context — writing modules, reviewing/auditing existing HCL, debugging plan/apply/state errors, or designing AWS architecture. Use PROACTIVELY when an IaC or AWS task is multi-step, spans several files, or would otherwise bloat the main conversation. The agent reads the repo before prescribing, defaults to OpenTofu, and looks up provider/version/AWS details via Context7 rather than relying on training data. Also handles CI/CD pipelines (GitHub Actions, GitLab CI, Woodpecker CI), branching/release strategy, deployment strategies, and pipeline security via the ci-cd skill.
-model: sonnet
 skills:
   - devops-engineer
   - ci-cd

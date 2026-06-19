@@ -16,10 +16,5 @@
     "languages",
     "architecture"
   ],
-  "skills": "./skills/",
-  "commands": "./commands/",
-  "agents": [
-    "./agents/arch-tutor.md",
-    "./agents/pl-tutor.md"
-  ]
+  "skills": "./skills/"
 }
