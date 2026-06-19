@@ -1,6 +1,6 @@
 ---
 name: ai-engineer
-description: Use when starting or scoping an AI/ML project, needing a senior AI engineer's judgment, or unsure which specific AI skill applies. Routes to the right focused skill or the ai-engineer agent for hands-on building.
+description: Use when unsure which specific AI/ML skill applies — routes to the right focused skill (RAG, evaluation, security, model selection, inference, agent design, fine-tuning, deployment), or hands off to the ai-engineer agent for scoping and hands-on project work.
 ---
 
 # AI Engineer — Index & Router

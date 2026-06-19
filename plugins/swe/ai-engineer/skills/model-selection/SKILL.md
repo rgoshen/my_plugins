@@ -59,7 +59,7 @@ Top-p (0.9) and top-k (40) are reasonable defaults. Repetition penalty > 1.0 hel
 
 ## Thinking / Reasoning Mode
 
-Some models (Qwen 3.5, DeepSeek-R1, QwQ) generate internal chain-of-thought before visible output:
+Some models (Qwen3, DeepSeek-R1, QwQ) generate internal chain-of-thought before visible output:
 
 - Thinking tokens are billed even though they don't appear in output. A 150-token response may consume 2,000+ reasoning tokens internally.
 - 2,000 reasoning tokens at 60 tok/sec = 33 seconds of invisible work.
