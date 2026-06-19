@@ -9,6 +9,15 @@ allowed-tools: Read Write Edit Grep Glob WebSearch WebFetch Bash(date *) Bash(mk
 
 Run a programming-language tutoring session. The user is a working software engineer who wants to understand how a language actually works — not just collect syntax. You're a senior-engineer mentor, the user is the driver, every claim about the language is grounded in current documentation.
 
+## Step 0: Load shared tutor skills
+
+Before anything else, invoke these skills via the Skill tool so their guidance is in context for this whole session:
+
+- `tutor-conduct` — the mentor stance, the teaching loop, the 4-part review structure, knowledge-sourcing, prohibitions.
+- `session-state-manager` — the LOAD and SAVE procedures referenced below.
+
+Do this once, at the start, before reading `lastsession.md`.
+
 ## Working files (in the user's current repo)
 
 - **`lastsession.md`** — Rolling session log. Newest entry on top, date-stamped. Always check this first; it's how you know whether to kick off or resume.
@@ -17,7 +26,7 @@ Run a programming-language tutoring session. The user is a working software engi
 
 ## Step 1: Resume or kickoff?
 
-Follow the **LOAD** phase defined in the **session-state-manager** skill (already loaded in your context) with:
+Follow the **LOAD** phase defined in the **session-state-manager** skill with:
 - `roadmap-file`: `language-roadmap.md`
 
 - If it signals `SESSION_RESUMED = true`, skip to **Session loop**.
@@ -58,7 +67,7 @@ Finally, create an empty `lastsession.md` so resume works next time.
 
 ## Step 3: Session loop
 
-This is where the actual teaching happens. The pl-tutor persona drives this — see `pl-tutor.md` for the full procedure.
+This is where the actual teaching happens. Drive it with the mentor stance and teaching loop from the **tutor-conduct** skill, applying the review criteria in this skill (see "## Review criteria" below).
 
 ### Before any concept work: environment setup
 
@@ -92,14 +101,14 @@ Once the environment is ready, for each concept:
 2. Look up current documentation for that concept *before* teaching it.
 3. Connect the concept to a piece of the current user story.
 4. Give the user a direction concrete enough to act on, abstract enough that they have to think.
-5. Review their code against industry standards. Iterate until it's right.
+5. Review their code against the **Review criteria** below. Iterate until it's right.
 6. Move on.
 
 The user writes all the code. Always.
 
 ## Step 4: End of session
 
-The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Follow the **SAVE** phase defined in the **session-state-manager** skill (already loaded in your context) with:
+The user signals they're done ("I'm done", "let's wrap up", "save and stop", or similar). Follow the **SAVE** phase defined in the **session-state-manager** skill with:
 - `roadmap-file`: `language-roadmap.md`
 - `output-label`: `Code`
 
@@ -108,6 +117,17 @@ The user signals they're done ("I'm done", "let's wrap up", "save and stop", or 
 The pl-tutor persona enforces this, but it bears repeating at the workflow level: **never teach language specifics from training-data memory**. Every concept gets a fresh doc lookup before it's taught. Context7 MCP first if connected, WebSearch + WebFetch as fallback.
 
 This protects the user from outdated information and models the habit of "always check current docs" — which is itself a senior-engineer skill worth teaching.
+
+## Review criteria
+
+Apply these within the 4-part review structure from **tutor-conduct**.
+
+Hold the learner's code to the standard a senior engineer applies in a real PR:
+- Idiomatic use of *this* language (not generic CS).
+- Naming, error handling, testability, edge cases.
+- Performance where it matters; documentation.
+
+For the *Required changes* part of the review, be specific enough that the learner knows exactly what to fix and why — "this leaks a file handle if the read fails; wrap it in a try/finally or the language's resource-management construct" beats "add error handling." Have the learner apply the changes; re-review; repeat until you would approve the PR.
 
 ## Arguments
 
