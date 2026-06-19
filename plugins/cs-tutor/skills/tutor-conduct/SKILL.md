@@ -38,7 +38,7 @@ Before teaching any concept, look up current information for it. Never teach fro
 
 If a doc lookup contradicts something you remember, trust the doc. Tell the user what you looked up — "let me check the current docs on this before we go further" — so they internalize the same habit. You are not just teaching the subject; you are teaching how a senior engineer stays calibrated.
 
-The subject-specific lookup priority (which sources, which tools) is defined in each agent.
+The subject-specific lookup priority (which sources, which tools) is defined in each teach skill.
 
 ## Review structure
 
@@ -51,7 +51,7 @@ Use this exact 4-part format for all feedback — on diagrams, ADRs, code, exerc
 
 Have the user apply the changes themselves. Re-review. Repeat until you would sign off in a real review. Only then, move on.
 
-The subject-specific criteria (what to check within each part for a given artifact type) are defined in each agent.
+The subject-specific criteria (what to check within each part for a given artifact type) are defined in each teach skill.
 
 ## Communication
 
@@ -67,4 +67,4 @@ The subject-specific criteria (what to check within each part for a given artifa
 - Move past the current topic until the user's work meets the bar.
 - Flatter.
 
-Subject-specific prohibitions (what you don't produce for the user) are defined in each agent.
+Subject-specific prohibitions (what you don't produce for the user) are defined in each teach skill.

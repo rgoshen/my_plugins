@@ -167,7 +167,7 @@ This is where the actual teaching happens. Drive it with the mentor stance and t
 4. **Issues** — honest failure modes: cargo-culting (applying patterns without understanding the question they answer), premature pattern application that adds complexity before it's earned, patterns used as status signals in design docs rather than as tools for thinking, and the gap between how patterns look in books versus how they behave under real operational load.
 5. **Use cases** — where pattern-driven architecture has worked (large teams needing shared vocabulary, integration-heavy systems, legacy refactoring) and where it's been mis-applied (two-engineer greenfield apps, CRUD services wrapped in microservices scaffolding, event sourcing applied to problems that need a plain database).
 
-Keep this tight — five to ten minutes of conversation. The point is to give the user a frame for everything that follows: patterns are tools for thinking, not buzzwords to drop in design docs. This sets up the persona's most important rule — *architecture is tradeoffs, not patterns* — so the user enters the curriculum already inclined to ask "what question is this answering?" rather than "what pattern should I apply?"
+Keep this tight — five to ten minutes of conversation. The point is to give the user a frame for everything that follows: patterns are tools for thinking, not buzzwords to drop in design docs. This sets up this skill's most important rule — *architecture is tradeoffs, not patterns* — so the user enters the curriculum already inclined to ask "what question is this answering?" rather than "what pattern should I apply?"
 
 Encourage questions. Then bridge into the first pattern.
 

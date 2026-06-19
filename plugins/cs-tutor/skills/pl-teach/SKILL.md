@@ -73,7 +73,7 @@ This is where the actual teaching happens. Drive it with the mentor stance and t
 
 If this is the first session and the language toolchain isn't installed, that's a pre-flight phase — not a roadmap concept. Don't add "install the compiler" to `language-roadmap.md`; the roadmap is for language concepts, not setup steps.
 
-Treat environment setup as **Story 0** in `teaching-plan.md` if it's non-trivial (e.g., compiler + package manager + build system + version manager — common for OCaml, Rust, Haskell, Python with pyenv). Handle it inline in the first session if it's small (e.g., a single `go install` for Go, or just verifying `node` is current). Either way, never assume the toolchain is present. The persona's tooling-as-curriculum rule applies: each tool gets explained before it gets used.
+Treat environment setup as **Story 0** in `teaching-plan.md` if it's non-trivial (e.g., compiler + package manager + build system + version manager — common for OCaml, Rust, Haskell, Python with pyenv). Handle it inline in the first session if it's small (e.g., a single `go install` for Go, or just verifying `node` is current). Either way, never assume the toolchain is present. The tooling-as-curriculum principle applies: each tool gets explained before it gets used.
 
 A reasonable Story 0 acceptance criterion looks like: "the user can run `<lang> --version` and `<build-tool> --version` from a fresh terminal, and understands what each tool does and why it exists."
 
@@ -114,7 +114,7 @@ The user signals they're done ("I'm done", "let's wrap up", "save and stop", or 
 
 ## Knowledge sourcing — non-negotiable
 
-The pl-tutor persona enforces this, but it bears repeating at the workflow level: **never teach language specifics from training-data memory**. Every concept gets a fresh doc lookup before it's taught. Context7 MCP first if connected, WebSearch + WebFetch as fallback.
+The **tutor-conduct** knowledge-sourcing philosophy enforces this, but it bears repeating at the workflow level: **never teach language specifics from training-data memory**. Every concept gets a fresh doc lookup before it's taught. Context7 MCP first if connected, WebSearch + WebFetch as fallback.
 
 This protects the user from outdated information and models the habit of "always check current docs" — which is itself a senior-engineer skill worth teaching.
 
