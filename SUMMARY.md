@@ -1,5 +1,20 @@
 # Summary
 
+## [2026-06-18 21:08] Commit Summary
+
+**Change Type:** Docs
+**Scope:** plugins/swe — devops-engineer plugin (CI/CD skill design)
+
+**Summary:**
+Added the approved design spec for a new CI/CD skill in the `devops-engineer` plugin at `docs/superpowers/specs/2026-06-18-ci-cd-skill-design.md`. The skill (`ci-cd`, callable as `/devops-engineer:ci-cd`) is CI-agnostic in its core `SKILL.md` with platform-specific concreteness in `references/` — worked examples for GitHub Actions, GitLab CI, and Woodpecker CI, plus topic references for branching models, deployment strategies, pipeline security, and IaC pipelines. It will be preloaded into the `devops-engineer` agent via `skills:` frontmatter and the agent/plugin/marketplace descriptions broadened so CI/CD auto-triggers.
+
+**Rationale:**
+The `devops-engineer` plugin is deliberately scoped to IaC/AWS, but the name implies the full delivery lifecycle; CI/CD was a name-vs-scope gap. Brainstorming settled six decisions: comprehensive scope, neutral/balanced branching coverage (no house default), multi-platform CI-agnostic core, preload + broaden triggers, `ci-cd` slug, and Woodpecker CI as the FOSS third platform. Spec committed before implementation per the brainstorming workflow's design-review gate.
+
+**References:**
+- Branch: feature/devops-engineer-cicd-skill
+- Spec: docs/superpowers/specs/2026-06-18-ci-cd-skill-design.md
+
 ## [2026-06-18 19:24] Commit Summary
 
 **Change Type:** Feature
