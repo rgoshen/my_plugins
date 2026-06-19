@@ -23,6 +23,14 @@
             "category": "development",
             "tags": ["devops", "opentofu", "terraform", "iac", "aws", "infrastructure", "platform-engineering"],
             "homepage": "https://rgoshen.github.io/my_plugins/plugins/devops-engineer"
+        },
+        {
+            "name": "ai-engineer",
+            "source": "./plugins/swe/ai-engineer",
+            "description": "Senior AI/ML engineer — a self-contained decision-framework sub-agent plus focused skills for RAG, evaluation, security, model selection, inference, agents, fine-tuning, and deployment, wired to Context7.",
+            "category": "development",
+            "tags": ["ai", "ml", "llm", "rag", "fine-tuning", "agents", "inference", "evaluation", "model-selection"],
+            "homepage": "https://rgoshen.github.io/my_plugins/plugins/ai-engineer"
         }
     ]
 }

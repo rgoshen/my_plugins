@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "ai-engineer",
+  "description": "Senior AI/ML engineering expertise — a self-contained sub-agent carrying a full AI/ML decision framework, plus an indexed set of 9 skills (RAG, evaluation, security, model selection, inference, agent design, fine-tuning, deployment), wired to Context7 for live documentation lookup.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Rick Goshen",
+    "email": "rick.goshen@gmail.com"
+  },
+  "repository": "https://github.com/rgoshen/my_plugins.git",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "ml",
+    "llm",
+    "rag",
+    "fine-tuning",
+    "agents",
+    "inference",
+    "evaluation"
+  ]
+}
