@@ -1,10 +1,11 @@
 # devops-engineer
 
-A senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS, packaged as a Claude Code plugin in the [`my_plugins`](https://github.com/rgoshen/my_plugins) marketplace. Part of the **swe** plugin family (`plugins/swe/`).
+A senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, AWS, and CI/CD, packaged as a Claude Code plugin in the [`my_plugins`](https://github.com/rgoshen/my_plugins) marketplace. Part of the **swe** plugin family (`plugins/swe/`).
 
-Two entry points share one body of conventions, plus the Context7 MCP server for live documentation lookup:
+These entry points share the plugin's conventions, plus the Context7 MCP server for live documentation lookup:
 
-- **Skill** (`skills/devops-engineer/`) — loads *inline* in your main conversation when IaC/AWS comes up, and is also invocable as `/devops-engineer:devops-engineer`. Quick hits and mid-conversation expertise.
+- **`devops-engineer` skill** (`skills/devops-engineer/`) — loads *inline* in your main conversation when IaC/AWS comes up, and is also invocable as `/devops-engineer:devops-engineer`. Quick hits and mid-conversation expertise.
+- **`ci-cd` skill** (`skills/ci-cd/`) — CI-agnostic CI/CD expertise (GitHub Actions, GitLab CI, Woodpecker CI, branching/release models, deployment strategies, pipeline security). Loads inline when CI/CD comes up, and is invocable as `/devops-engineer:ci-cd`. Platform-specific YAML lives in its `references/`.
 - **Sub-agent** (`agents/devops-engineer.md`) — runs in its *own context* for delegated, multi-step work (`@devops-engineer:devops-engineer`). It preloads the skill via the `skills:` frontmatter field, so the conventions live in one place and don't drift. It enforces Context7 lookup harder than the inline skill.
 - **Context7 MCP** (`.mcp.json`) — provides live docs lookup to the session; the agent inherits it.
 
@@ -15,10 +16,20 @@ plugins/swe/devops-engineer/
 ├── .claude-plugin/
 │   └── plugin.json
 ├── skills/
-│   └── devops-engineer/
+│   ├── devops-engineer/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       └── conventions.md
+│   └── ci-cd/
 │       ├── SKILL.md
 │       └── references/
-│           └── conventions.md
+│           ├── branching-models.md
+│           ├── github-actions.md
+│           ├── gitlab-ci.md
+│           ├── woodpecker-ci.md
+│           ├── deployment-strategies.md
+│           ├── pipeline-security.md
+│           └── iac-pipelines.md
 ├── agents/
 │   └── devops-engineer.md
 └── .mcp.json

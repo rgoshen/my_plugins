@@ -2,6 +2,12 @@
 
 All notable changes to the `devops-engineer` plugin.
 
+## [Unreleased]
+
+### Added
+- `ci-cd` skill — CI-agnostic CI/CD expertise: pipeline fundamentals, branching/release models (GitHub Flow / GitFlow / trunk-based, presented neutrally), deployment strategies, and pipeline security. Worked examples for GitHub Actions, GitLab CI, and Woodpecker CI, plus an IaC-pipelines bridge to the `devops-engineer` skill. Invocable as `/devops-engineer:ci-cd` and preloaded by the `devops-engineer` sub-agent. References under `skills/ci-cd/references/`.
+- Broadened the `devops-engineer` agent, `plugin.json`, and marketplace descriptions/keywords so CI/CD work auto-triggers the plugin.
+
 ## [0.1.0] - 2026-06-18
 
 ### Added

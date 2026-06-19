@@ -19,9 +19,9 @@
         {
             "name": "devops-engineer",
             "source": "./plugins/swe/devops-engineer",
-            "description": "Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, and AWS — inline skill plus a delegated sub-agent with Context7 docs lookup.",
+            "description": "Senior DevOps/platform-engineering specialist for OpenTofu, Terraform, IaC, AWS, and CI/CD — inline skills plus a delegated sub-agent with Context7 docs lookup.",
             "category": "development",
-            "tags": ["devops", "opentofu", "terraform", "iac", "aws", "infrastructure", "platform-engineering"],
+            "tags": ["devops", "opentofu", "terraform", "iac", "aws", "infrastructure", "platform-engineering", "cicd", "pipelines", "github-actions"],
             "homepage": "https://rgoshen.github.io/my_plugins/plugins/devops-engineer"
         },
         {
